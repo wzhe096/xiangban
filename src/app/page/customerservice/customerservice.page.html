@@ -1,0 +1,119 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button ></ion-back-button>
+    </ion-buttons>
+    <ion-title style="text-align: center;font-family: 'PingFang-SC-Bold';color: #333333;">相瓣</ion-title>
+   
+   
+  </ion-toolbar>
+ 
+</ion-header>
+
+<ion-content style="background: #FFFEFF;">
+  <!-- 客服消息 -->
+  <ion-row class="color-grey flex-box" 
+  style="width: 100%;text-align: center;font-family: 'PingFangSC-Light';font-weight: lighter;font-size: 8pt;margin-top: 5%;">
+  {{friendInfo.time }}</ion-row>
+<ion-item  class="item-box" style="margin: 0.5rem 0rem;" lines="none">
+  <ion-thumbnail slot="start" class="flex-box" style="justify-content: flex-start;margin-top: -50%;" >
+    <ion-img src="assets/img/444.png" style="width: 45px;height: 45px;">
+    </ion-img>
+  </ion-thumbnail>
+   <ion-row size="12">
+      <div class="chat-left_triangle"></div>
+      <span class="left-message-box fz0-8" style="max-width: 80%;"
+        >你好，需要什么帮助？<br>
+        你好，请问有什么可以帮到你的？<br>
+        猜你想问：<br>
+        1. 如何修改资料<br>
+        2. 如何充值会员，充值会员有什么功能<br>
+        3. 相瓣币有什么用<br>
+        4. 充值了相瓣币未到账？<br>
+        5. 如果查看同城或附近的人<br>
+        6. 如何赠送礼物？<br>
+        7. 如何发布动态/邀约？<br>
+        8. 其他问题/转接人工客服<br>
+        9. 意见反馈</span>
+        <!-- <i class="iconfont icon-shiliangzhinengduixiang14 fz0-8" style="margin: auto 0.5rem;color: greenyellow;"></i> -->
+
+      
+    </ion-row>
+</ion-item>
+  <ion-list lines="none" *ngIf="peapleInfo.length>0" style="margin-top: 20px;">
+  
+   
+  
+<!-- 用户消息 -->
+    <div *ngFor="let item of peapleInfo,let i =index;">
+      <ion-row class="color-grey flex-box"
+        style="width: 100%;text-align: center;font-family: 'PingFangSC-Light';font-weight: lighter;font-size: 8pt;">
+        {{item.receivedTime }}</ion-row>
+      <ion-item *ngIf="item.senderUserId!=userid" class="item-box" style="margin: 0.5rem 0rem;">
+        <ion-thumbnail slot="start" class="flex-box" style="justify-content: flex-start;margin-top: 0%;">
+          <ion-img src="{{item.portrait}}" style="width: 45px;height: 45px;">
+          </ion-img>
+        </ion-thumbnail>
+        <ion-row size="12">
+          <div class="chat-left_triangle"></div>
+          <span class="left-message-box fz0-8" style="max-width: 200px;"
+            *ngIf="item.messageType=='TextMessage'">{{item.message}}</span>
+          <img src="{{item.imageUri}}" *ngIf="item.messageType=='ImageMessage'"
+            style="min-width: 100px;min-height: 150px;">
+          <div *ngIf="item.messageType=='VoiceMessage'" (click)="playVoice(item.message)">播放语音消息</div>
+          <span class="left-message-box fz0-8 flex-box" style="flex-direction: column;max-width: 200px;"
+            *ngIf="item.messageType=='LocationMessage'"><img src="{{item.message}}">{{item.poi}}</span>
+        </ion-row>
+      </ion-item>
+      <ion-item *ngIf="item.senderUserId==userid" class="item-box" style="direction: rtl;margin: 0.5rem 0rem;">
+        <ion-thumbnail slot="start" class="flex-box" style="justify-content: flex-start;margin-top: 0%;">
+          <ion-img src="{{item.portrait}}" style="width: 45px;height: 45px;">
+          </ion-img>
+        </ion-thumbnail>
+        <ion-row size="12">
+          <div class="chat-right_triangle"></div>
+          <span class="right-message-box fz0-8" style="direction: ltr;max-width: 200px;"
+            *ngIf="item.messageType=='TextMessage'">{{item.message}}</span>
+          <img src="{{item.imageUri}}" *ngIf="item.messageType=='ImageMessage'"
+            style="min-width: 100px;min-height: 150px;">
+          <div *ngIf="item.messageType=='VoiceMessage'" (click)="playVoice(item.message)">播放语音消息</div>
+          <span class="right-message-box fz0-8 flex-box" style="flex-direction: column;max-width: 200px;"
+            *ngIf="item.messageType=='LocationMessage'"><img src="{{item.message}}">{{item.poi}}</span>
+          <i class="iconfont icon-shiliangzhinengduixiang14 fz0-8" style="margin: auto 0.5rem;color: greenyellow;"></i>
+        </ion-row>
+      </ion-item>
+    </div>
+  </ion-list>
+</ion-content>
+<ion-footer>
+  <ion-row size="12" class="flex-box" style="justify-content: space-between; padding: 0.5rem 1rem;" id="inputLan">
+    <div class="flex-box input-box" style="justify-content: space-between; padding: 0.1rem 1rem;max-height: 2.5rem;"
+      [ngStyle]="{'width': messageData!=''?'85%':'100%'}">
+      <!-- <ion-img src="assets/icon/speaker.png" class="img20" (click)="reocrd()"></ion-img> -->
+      <div class="flex-box fz1 color-grey" *ngIf="isStart==true" (press)="startReocrd()" (pressup)="stopRecord()"
+        style="min-height: 30px;width: 100%;">{{btntext}}</div>
+      <ion-input type="text" [(ngModel)]="messageData"
+        style="padding-left: 0.4rem !important;padding-right: 0.4rem !important;" *ngIf="isStart!=true"></ion-input>
+      <ion-img src="assets/icon/expression.png" (click)="showFace()" class="img20" *ngIf="isStart!=true"></ion-img>
+    </div>
+    <span *ngIf="messageData!=''" (click)="sendMsg(messageData)" class="fz1"
+      style="font-family:PingFang SC;font-weight:300;color:rgba(51,51,51,1);">发送</span>
+  </ion-row>
+  <ion-row size="12" *ngIf="showCommonLst" class="top-line">
+    <ion-list lines="none" style="width: 100%;padding: 0;">
+      <ion-item class="fz0-8 color-grey"
+        [ngStyle]="{'border-bottom': i==commonLanList.length-1?'0':'1px solid #eeeeee'}"
+        *ngFor="let item of commonLanList,let i =index;" (click)="setText(item)">{{item}}
+      </ion-item>
+    </ion-list>
+  </ion-row>
+  <ion-row size="12" *ngIf="showFaceList" style="max-height: 30vh;overflow-y: scroll;">
+    <ion-list lines="none" style="width: 100%;height: 100%;padding: 0;">
+      <ion-row size="12">
+        <ion-col size="2" class="flex-box" *ngFor="let item of faceList" (click)="addFace(item)">{{item.emoji}}
+        </ion-col>
+      </ion-row>
+    </ion-list>
+  </ion-row>
+  
+</ion-footer>

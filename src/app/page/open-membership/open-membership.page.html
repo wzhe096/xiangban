@@ -1,0 +1,96 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons>
+      <ion-back-button ></ion-back-button>
+    </ion-buttons>
+    <ion-title text-center>开通会员</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-content>
+      <ion-item no-padding style="margin-bottom: 10px" lines="full">
+        期限会员
+      </ion-item>
+      <ion-row>
+        <ion-label style="font-size: 12px;color: #999999">专属VIP身份</ion-label>
+      </ion-row>
+      <ion-row>
+        <ion-label style="font-size: 12px;color: #999999">更改昵称1次/月</ion-label>
+      </ion-row>
+      <ion-row>
+        <ion-label style="font-size: 12px;color: #999999">查看通讯15次/月</ion-label>
+      </ion-row>
+      <ion-row>
+        <ion-label style="font-size: 12px;color: #999999">礼物充值9.5折</ion-label>
+      </ion-row>
+      <ion-row>
+        <ion-label style="font-size: 12px;color: #999999">免费发布邀约15次/月</ion-label>
+      </ion-row>
+      <ion-row>
+        <ion-label style="font-size: 12px;color: #999999">免费私聊</ion-label>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-content>
+      <ion-item no-padding style="margin-bottom: 10px" lines="full">
+        永久会员
+      </ion-item>
+      <ion-row>
+        <ion-label style="font-size: 12px;color: #999999">永久VIP身份</ion-label>
+      </ion-row>
+      <ion-row>
+        <ion-label style="font-size: 12px;color: #999999">更改昵称5次/月</ion-label>
+      </ion-row>
+      <ion-row>
+        <ion-label style="font-size: 12px;color: #999999">查看通讯30次/月</ion-label>
+      </ion-row>
+      <ion-row>
+        <ion-label style="font-size: 12px;color: #999999">礼物充值9折免费赠送价值99元礼物</ion-label>
+      </ion-row>
+      <ion-row>
+        <ion-label style="font-size: 12px;color: #999999">永久免费发布邀约</ion-label>
+      </ion-row>
+      <ion-row>
+        <ion-label style="font-size: 12px;color: #999999">永久免费私聊</ion-label>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-row text-center>
+      <ion-col style="height: 60px;border-right: 1px solid;border-bottom: 1px solid;" (click)="openMembership(1)">
+        <div style="font-size: 15px;">一个月</div>
+        <div style="font-size: 15px;">¥199</div>
+      </ion-col>
+      <ion-col style="height: 60px;border-bottom: 1px solid;" (click)="openMembership(2)">
+        <div style="font-size: 15px;">两个月</div>
+        <div style="font-size: 15px;">¥399</div>
+      </ion-col>
+    </ion-row>
+    <ion-row text-center>
+      <ion-col style="height: 60px;border-right: 1px solid;" (click)="openMembership(3)">
+        <div style="font-size: 15px;">三个月</div>
+        <div style="font-size: 15px;">¥499</div>
+      </ion-col>
+      <ion-col style="height: 60px;" (click)="openMembership(4)">
+        <div style="font-size: 15px;">终身</div>
+        <div style="font-size: 15px;">¥999</div>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+
+  <ion-row style="margin-left: 15px">
+    <input name="money" type="radio" style="margin-top: 5px;margin-right: 5px">
+    <ion-label style="margin-right: 15px">Line</ion-label>
+    <input name="money" type="radio" style="margin-top: 5px;margin-right: 5px">
+    <ion-label>银联</ion-label>
+  </ion-row>
+  <ion-row style="margin-left: 15px">
+    <input type="radio" style="margin-top: 5px;margin-right: 5px">
+    <ion-label style="color: #91E4FF;font-size: 11px;margin-top: 4px" (click)="userAgreement()">用户协议</ion-label>
+  </ion-row>
+
+  <ion-button style="float: right;margin-right: 15px;width: 150px" [routerLink]="['/member']" routerLinkActive="router-link-active" >开通会员</ion-button>
+</ion-content>

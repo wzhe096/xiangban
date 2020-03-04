@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title style="font-size: 14pt;">添加银行卡</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <label style="margin-left: 20px;font-size: small;color: #999999;">请绑定持卡人本人的银行卡</label>
+<ion-card style="margin-top: 2%;">
+
+  <ion-list>
+    <ion-item>
+      <ion-label>持卡人</ion-label>
+      <ion-input type="text" >
+      </ion-input>
+     <ion-img src="assets\img\tishi.png"></ion-img>
+    </ion-item>
+    <ion-item>
+      <ion-label>卡号</ion-label>
+      <ion-input type="text" >
+      </ion-input>
+     <ion-img src="assets\img\paizhao.png"></ion-img>
+    </ion-item>
+  </ion-list>
+</ion-card>
+<ion-row>
+  <ion-col size="12" style="text-align: center;margin-top: 20%;">
+    <ion-button (click)="onClick()" shape="round" style="--background: #8BA0F1;color: #FFFFFF;width: 90%;" [routerLink]="['/add-bank-card2']" routerLinkActive="router-link-active" >
+      下一步
+       </ion-button>
+  </ion-col>
+</ion-row>
+</ion-content>

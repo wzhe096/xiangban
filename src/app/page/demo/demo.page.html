@@ -1,0 +1,68 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>demo</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <ion-button (click)="test1()">相机</ion-button>
+    <ion-item>
+
+        用户信息
+        <ion-icon name="ios-arrow-down" item-right *ngIf="isShow" (click)="isShow=!isShow"></ion-icon>
+        <ion-icon name="ios-arrow-forward" item-right *ngIf="!isShow" (click)="isShow=!isShow"></ion-icon>
+    </ion-item>
+
+    <!--<ion-list *ngIf="isShow">
+        <ion-item>
+            姓名
+        </ion-item>
+        <ion-item>
+            姓名
+        </ion-item>
+    </ion-list>-->
+    <ion-list *ngIf="isShow">
+        <ion-item>
+            姓名
+        </ion-item>
+        <ion-item>
+            姓名
+        </ion-item>
+        <ion-item>
+            姓名
+        </ion-item>
+        <ion-item>
+            姓名
+        </ion-item>
+        <ion-item>
+            姓名
+        </ion-item>
+        <ion-item>
+            姓名
+        </ion-item>
+        <ion-item>
+            姓名
+        </ion-item>
+        <ion-item>
+            姓名
+        </ion-item>
+    </ion-list>
+
+    <div *ngIf="isShow">
+        <!--//弹框内容-->
+        <div style="z-index: 11;position: relative;margin-top: calc(10%)"
+             ontouchmove="event.preventDefault();event.stopPropagation();">
+            <!--<ion-card>
+                <ion-item>
+                    saa
+                </ion-item>
+            </ion-card>-->
+            <div style="background-color: #4c8dff;width: 100%;height: 100px"></div>
+        </div>
+        <!--遮罩-->
+        <div (click)="backdropclick($event)" ontouchmove="event.preventDefault();event.stopPropagation();">
+            <ion-backdrop role="presentation" tappable
+                          style="opacity: 0.5; transition-delay: initial; transition-property: none;"></ion-backdrop>
+        </div>
+
+    </div>
+</ion-content>

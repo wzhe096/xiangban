@@ -1,0 +1,80 @@
+.list-1{
+    width:100px;
+    height:40px;
+    text-align: center;
+  }
+  .item-1{
+    background-color: #000000;
+    color: #FFFFFF;
+    opacity:0.64;
+    margin: 0 auto;
+    line-height: 40px;
+    height: 40px;
+    font-family: 'PingFang-SC-Regular';
+  
+  }
+  .button_min{
+    font-size: 8pt;
+  }
+
+.small-font{
+  font-size: 1rem;
+  color: #333333
+}
+.div-c{
+  float:left;
+  width:90px;
+  height: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.div-d{
+  float:right;
+  width: calc(100% - 90px);
+  height: 90px;
+  padding-top: 15px;
+  padding-right: 15px;
+  padding-bottom: 15px
+}
+.man-lable{
+  color: #ffffff;
+  width: 46px;
+  border-radius: 3px;
+  text-align: center;
+  margin-right: 5px;
+  font-size: 12px;
+  display: block;
+  float: left;
+  background-color: #86A8FF;
+}
+.top_triangle {
+  height: 0px;
+  width: 0px;
+  border-width: 6px;
+  border-style: solid;
+  border-color:  transparent transparent #585858 transparent;
+  position: relative;
+  right: -80%;
+  top: 1px;
+}
+.bottom_line:after {
+  content: '';
+  position: absolute;
+
+  top: auto;
+  bottom: 0;
+  right: auto;
+  height: 1px;
+  width: 100%;
+  background-color: #eeeeee;
+}
+ion-footer {
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.1);
+}
+.input-box {
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.1);
+  border-radius: 29px;
+}

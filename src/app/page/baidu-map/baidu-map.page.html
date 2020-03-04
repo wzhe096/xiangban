@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title style="text-align: center;">位置信息</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="send()" class="color-grey fz0-8">
+        发送
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content id="map">
+
+</ion-content>
+<div class="backTotop-box">
+  <div class="backicon-box" (click)="getLoaction()">
+    <i class="iconfont icon-weizhi" style="font-size: 2.5rem;"></i>
+  </div>
+</div>

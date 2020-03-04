@@ -1,0 +1,83 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>我的</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card style="margin-top: 4%;">
+    <!-- <ion-img style="width: 76px;height: 76px;margin-left: calc(50% - 38px);margin-top: 43px" src="assets\icon\user.png"></ion-img>
+    <div style="text-align:center;margin-top: 22px;font-size: 16px;font-weight: bold;font-family: PingFang-SC-Bold;color: #333333">哈哈</div>
+    <div style="text-align:center;margin-top: 10px">
+      <ion-row style="margin-left: calc(50% - 50px)">
+        <span class="man-lable"
+              [ngStyle]="{'background-color':user.sex == '1' ? '#ff88eb' : '#88a8ff'}">{{user.age}}
+          岁</span>
+        <span class="man-lable"
+              [ngStyle]="{'background-color':user.sex == '1' ? '#ff88eb' : '#88a8ff'}">{{user.profession}}</span>
+      </ion-row>
+    </div> --> 
+    <ion-list style="padding: 10px 0 12px 0;"  >
+      
+   
+    <ion-item tappable lines="none" [routerLink]="['/personal-data']" routerLinkActive="router-link-active">
+      <ion-thumbnail slot="start" style="width: 60px;">
+        <img style="height: 60px;width: 60px" src="assets\icon\user.png" alt="头像">
+      </ion-thumbnail>
+      <ion-label>
+        <h2 style="font-weight: 500;font-weight: bold;"> 花间人</h2>
+        <div style="margin-top: 10px;">
+
+        
+        <span class="man-lable"
+              [ngStyle]="{'background-color':user.sex == '1' ? '#ff88eb' : '#88a8ff'}">{{user.age}}
+          岁</span>
+        <span class="man-lable"
+              [ngStyle]="{'background-color':user.sex == '1' ? '#ff88eb' : '#88a8ff'}">{{user.profession}}</span>
+            </div>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+    
+  </ion-card>
+  <ion-card style="margin-top: -3%;">
+    <div class="table" style="line-height: 20px;">
+      <div class="accordant" >
+    <div class="box" routerLink="/my-wallet" >
+      <ion-img style="width: 25px;height: 25px;margin: 0 auto" src="assets\icon\钱包.png"></ion-img>
+      <div class="mine-font">钱包</div>
+    </div>
+    <div class="box" routerLink="/member" >
+      <img style="width: 29px;height: 23px;margin: 0 auto;" src="assets\icon\会员.png">
+      <div class="mine-font">会员</div>
+    </div>
+    <div class="box" routerLink="/my-dynamic">
+      <ion-img style="width: 25px;height: 25px;margin: 0 auto" src="assets\icon\动态.png"></ion-img>
+      <div class="mine-font">动态</div>
+    </div>
+      </div>
+    </div>
+  </ion-card>
+  <ion-card style="margin-top: -3%;">
+    <ion-list>
+      <ion-item lines="none" detail tappable routerLink="/extension" style="border-bottom: #eeeeee 1px solid;">
+        <!-- <ion-button slot="start" fill="clear"> -->
+          <ion-img style="width: 15px;height: 15px;" src="assets\icon\邀请奖励.png"></ion-img>
+        <!-- </ion-button> -->
+        <ion-label style="font-size: 10pt;margin-left: 3%;">邀请奖励</ion-label>
+      </ion-item>
+      <ion-item lines="none" detail tappable style="border-bottom: #eeeeee 1px solid;" [routerLink]="['/customerservice']" routerLinkActive="router-link-active">
+       
+          <ion-img style="width: 15px;height: 15px;" src="assets\icon\在线客服.png"></ion-img>
+        
+        <ion-label style="font-size: 10pt;margin-left: 3%;"  >在线客服</ion-label>
+      </ion-item>
+      <ion-item lines="none" detail tappable routerLink="/system-setup" style="border-bottom: #eeeeee 1px solid;">
+       
+          <ion-img style="width: 15px;height: 15px;" src="assets\icon\系统设置.png"></ion-img>
+       
+        <ion-label style="font-size: 10pt;margin-left: 3%;">系统设置</ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+</ion-content>

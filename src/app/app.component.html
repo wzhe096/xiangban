@@ -1,0 +1,25 @@
+<ion-app>
+ <ion-menu  menuId="left" side="start" type="overlay">
+   <ion-header>
+     <ion-toolbar>
+       <ion-title>我的信息</ion-title>
+     </ion-toolbar>
+   </ion-header>
+   <ion-content>
+     <ion-list>
+        <ion-menu-toggle>
+       <ion-item [routerLink]="['/button']" routerLinkActive="router-link-active" >
+         <ion-label>基本信息</ion-label>
+       </ion-item>
+      </ion-menu-toggle>
+
+        <ion-menu-toggle>
+       <ion-item [routerLink]="['/datetime']" routerLinkActive="router-link-active" >
+         <ion-label>我的资产</ion-label>
+       </ion-item>
+      </ion-menu-toggle>
+     </ion-list>
+   </ion-content>
+ </ion-menu>
+  <ion-router-outlet main></ion-router-outlet>
+</ion-app>

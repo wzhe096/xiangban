@@ -1,0 +1,31 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>Album</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content>
+  <div >
+
+    <!-- on-slide-changed  ='slid()' -->
+  <ion-slides (ionSlideDidChange)="slid($event)" id="a" #slide>
+   
+    <ion-slide>
+     <img src="assets\img\1.jpg" alt="">
+    </ion-slide>
+    <ion-slide>
+      <img src="assets\img\2.jpg" alt="">
+     </ion-slide>
+     <ion-slide>
+      <img src="assets\img\3.jpg" alt="">
+     </ion-slide>
+  </ion-slides>
+   
+  
+  <div class="b">
+  <div class="a"></div>
+  <div class="a"></div>
+  <div class="a"></div>
+</div>
+  </div>
+</ion-content>

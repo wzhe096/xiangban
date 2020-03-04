@@ -1,0 +1,109 @@
+<ion-header>
+  <ion-toolbar>
+
+    <ion-title style="text-align: center;">
+      消息
+    </ion-title>
+  </ion-toolbar>
+  <ion-segment [(ngModel)]="type" mode="md">
+    <ion-segment-button value="friend" checked mode="md" class="color-grey" (click)="selectType('friend')">
+      <span class="fz0-8">{{myInfo.friendNum}}</span>
+      <ion-label class="fz0-8" style="margin: 0;">好友</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="focus" mode="md" class="color-grey" (click)="selectType('focus')">
+      <span class="fz0-8">{{myInfo.attention}}</span>
+      <ion-label class="fz0-8" style="margin: 0;">关注</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="fans" mode="md" class="color-grey" (click)="selectType('fans')">
+      <span class="fz0-8">{{myInfo.fans}}</span>
+      <ion-label class="fz0-8" style="margin: 0;">粉丝</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="blacklist" mode="md" class="color-grey" (click)="selectType('blacklist')">
+      <span class="fz0-8">{{myInfo.blacklist}}</span>
+      <ion-label class="fz0-8" style="margin: 0;">黑名单</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+</ion-header>
+
+<ion-content style="background: #FFFEFF;">
+  <div [ngSwitch]="type">
+    <div *ngSwitchCase="'friend'">
+      <ion-list lines="none" style="padding:0rem 1rem;" *ngIf="friendList.length>0">
+        <ion-item class="item-box" *ngFor="let item of friendList" (click)="jumpChat(item)">
+          <ion-thumbnail class="flex-box" style="justify-content: flex-start;">
+            <ion-img src="{{item.icon}}" style="width: 40px;height: 40px;border-radius: 50%;"></ion-img>
+          </ion-thumbnail>
+          <ion-label class="ion-no-padding">
+            <ion-row size="12">
+              <ion-col size="12" class="flex-box" style="justify-content: space-between;padding: 0;">
+                <span class="title-box fz1-1 ellipsis">{{item.name}}</span>
+                <span class="fz0-8 color-grey">{{item.lasttime}}</span>
+              </ion-col>
+              <ion-col size="12" class="flex-box" style="justify-content: flex-start;padding: 0;">
+                <span class="fz1 color-grey">{{item.lastcontext}}</span>
+              </ion-col>
+              <!-- <ion-badge color="danger" slot="end">1</ion-badge> -->
+            </ion-row>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </div>
+    <div *ngSwitchCase="'focus'">
+      <ion-list lines="none" style="padding:0rem 1rem;" *ngIf="friendList.length>0">
+        <ion-item class="item-box" *ngFor="let item of friendList" (click)="jumpChat(item)">
+          <ion-thumbnail class="flex-box" style="justify-content: flex-start;">
+            <ion-img src="{{item.icon}}" style="width: 40px;height: 40px;border-radius: 50%;"></ion-img>
+          </ion-thumbnail>
+          <ion-label class="ion-no-padding">
+            <ion-row size="12">
+              <ion-col size="12" class="flex-box" style="justify-content: space-between;padding: 0;">
+                <span class="title-box fz1-1 ellipsis">{{item.name}}</span>
+                <span class="fz0-8 color-grey">{{item.lasttime}}</span>
+              </ion-col>
+              <ion-col size="12" class="flex-box" style="justify-content: flex-start;padding: 0;">
+                <span class="fz1 color-grey">{{item.lastcontext}}</span>
+              </ion-col>
+              <!-- <ion-badge color="danger" slot="end">1</ion-badge> -->
+            </ion-row>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </div>
+    <div *ngSwitchCase="'fans'">
+      <ion-list lines="none" style="padding:0rem 1rem;" *ngIf="friendList.length>0">
+        <ion-item class="item-box" *ngFor="let item of friendList" (click)="jumpChat(item)">
+          <ion-thumbnail class="flex-box" style="justify-content: flex-start;">
+            <ion-img src="{{item.icon}}" style="width: 40px;height: 40px;border-radius: 50%;"></ion-img>
+          </ion-thumbnail>
+          <ion-label class="ion-no-padding">
+            <ion-row size="12">
+              <ion-col size="12" class="flex-box" style="justify-content: space-between;padding: 0;">
+                <span class="title-box fz1-1 ellipsis">{{item.name}}</span>
+                <span class="fz0-8 color-grey">{{item.lasttime}}</span>
+              </ion-col>
+              <ion-col size="12" class="flex-box" style="justify-content: flex-start;padding: 0;">
+                <span class="fz1 color-grey">{{item.lastcontext}}</span>
+              </ion-col>
+              <!-- <ion-badge color="danger" slot="end">1</ion-badge> -->
+            </ion-row>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </div>
+    <div *ngSwitchCase="'blacklist'">
+      <ion-list lines="none" class="list-box" *ngIf="blackList.length>0">
+        <ion-item class="bottom-line" *ngFor="let item of blackList" style="padding: 0.3rem 0rem;">
+          <ion-thumbnail class="flex-box" style="justify-content: flex-start;">
+            <ion-img src="{{item.picId}}" style="width: 40px;height: 40px;border-radius: 50%;"></ion-img>
+          </ion-thumbnail>
+          <ion-label class="ion-no-padding">
+            <ion-row size="12" class="flex-box" style="justify-content: space-between;">
+              <span class="title-box fz1-1 ellipsis" style="max-width: 70%;">{{item.username}}</span>
+              <span class="fz1" style="color: #8BA0F1;text-align: center;" (click)="removeBlack(item)">移除黑名单</span>
+            </ion-row>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </div>
+  </div>
+</ion-content>

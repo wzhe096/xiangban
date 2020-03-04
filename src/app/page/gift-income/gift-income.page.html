@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title style="text-align: center;">礼物收益</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card>
+    <ion-list>
+      <ion-item lines="none" text-center>
+        <ion-col style="font-weight: bold">总收益</ion-col>
+        <ion-col style="color: #333333">{{income.total}}识君币</ion-col>
+        <ion-col style="color: #333333">≈{{income.total}}泰铢</ion-col>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+  <ion-card>
+    <ion-list>
+      <ion-item lines="none" text-center>
+        <ion-col style="font-weight: bold">已提现</ion-col>
+        <ion-col style="color: #333333">{{income.cashWithdrawal}}识君币</ion-col>
+        <ion-col style="color: #333333">≈{{income.cashWithdrawal}}泰铢</ion-col>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+  <ion-card>
+    <ion-list>
+      <ion-item lines="none" text-center>
+        <ion-col style="font-weight: bold">当前收益</ion-col>
+        <ion-col style="color: #333333">{{income.currentRevenue}}识君币</ion-col>
+        <ion-col style="color: #333333">≈{{income.currentRevenue}}泰铢</ion-col>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+
+  <ion-card>
+    <ion-list>
+      <ion-item lines="full" text-center *ngFor="let gift of income.gift">
+        <ion-col>{{gift.name}}</ion-col>
+        <ion-col style="color: #333333">{{gift.number}}识君币</ion-col>
+        <ion-col style="color: #333333">≈{{gift.totalMoney}}泰铢</ion-col>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+  <div style="margin-left: calc(20px + 3%);color: #999999;font-size: 12px">1币等于1人民币，按当天汇率进行提现</div>
+  <ion-button style="--background:#FFAE3A;--border-radius: 20px;margin-left:calc(50% - 75px);width: 170px;height:44px;margin-top: 50px">提现</ion-button>
+</ion-content>

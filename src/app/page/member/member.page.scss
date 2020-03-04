@@ -1,0 +1,39 @@
+.mine-font{
+  font-size: 11px;
+  font-weight: lighter;
+  font-family: PingFang-SC-Regular;
+  color: #333333;
+}
+.box {
+  margin: 0 1rem;
+  width: 33.33%;
+  padding: 1rem;
+}
+.box:nth-child(2) {
+  height: 5rem;
+}
+.accordant {
+  display: table-row;
+}
+.table {
+  width: 100%;
+  display: table;
+}
+.table .accordant {
+  display: table-row;
+}
+.table .accordant .box {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+.man-lable{
+  color: #ffffff;
+  width: 50px;
+  border-radius:5px;
+  text-align: center;
+  margin-right: 5px;
+  font-size: 12px;
+  display:block;
+  float: left;
+}

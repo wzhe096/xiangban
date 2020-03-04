@@ -1,0 +1,45 @@
+.mine-font{
+  font-size: 11px;
+  font-weight: revert;
+  font-family: PingFang-SC-Regular;
+  color: #333333;
+  margin-top: 4px;
+}
+.box {
+  margin: 0px;
+  width: 33.33%;
+  padding: 0.2rem;
+}
+.box:nth-child(2) {
+  height: 5rem;
+}
+.accordant {
+  display: table-row;
+}
+.table {
+  width: 100%;
+  display: table;
+  
+}
+.table .accordant {
+  display: table-row;
+}
+.table .accordant .box {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  height: 65px;
+}
+.man-lable{
+  color: #ffffff;
+  width: 50px;
+  border-radius:5px;
+  text-align: center;
+  margin-right: 5px;
+  font-size: 12px;
+  display:block;
+  float: left;
+}
+.header-ios ion-toolbar:last-child {
+  --border-width: 0;
+}

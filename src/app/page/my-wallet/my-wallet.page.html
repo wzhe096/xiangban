@@ -1,0 +1,88 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title style="text-align: center;">我的钱包</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+  <ion-row class="flex-box card-box" style="flex-direction: column;margin: 0.8rem 1rem;padding: 1.5rem 1rem;">
+    <ion-item lines="none">
+      <ion-thumbnail slot="start" class="flex-box" style="margin: 0;">
+        <ion-img style="width: 34px;height: 34px;" src="assets/icon/money.png"></ion-img>
+      </ion-thumbnail>
+      <ion-label class="flex-box" style="flex-direction: column;justify-content: flex-start;">
+        <div class="fz1 549" style="font-family: PingFangSC-Medium;">账户余额</div>
+        <div class="fz1 549" style="font-family: PingFangSC-Medium;">{{money}}识君币</div>
+      </ion-label>
+    </ion-item>
+    <div class="flex-box" style="margin-top: 1rem;justify-content: space-around;width: 100%;">
+      <ion-button routerLink="/recharge" shape="round" style="--background: #FFAE3A;max-height: 2.2rem;">
+        <span style="padding: 0rem 1rem;font-size: 10pt;">充值</span>
+      </ion-button>
+      <ion-button routerLink="/binding-account" shape="round" style="--background: #FFAE3A;max-height: 2.2rem;">
+        <span style="padding: 0rem 1rem;font-size: 10pt;">提现</span>
+      </ion-button>
+    </div>
+  </ion-row>
+  <ion-row class="card-box" style="margin: 0.8rem 1rem;">
+    <ion-col size="4" style="padding: 0;">
+      <ion-row class="bottom-line flex-box" style="padding: 0.5rem;">
+        <span class="bold color-black fz1">总收益</span>
+      </ion-row>
+      <ion-row style="padding: 0.5rem;">
+        <span class="fz1 color-black" style="width:100%;text-align: center;">999识君币</span>
+        <span class="fz0-8 color-black" style="width:100%;text-align: center;">≈0.00฿</span>
+      </ion-row>
+    </ion-col>
+    <ion-col size="4" style="padding: 0;">
+      <ion-row class="bottom-line flex-box" style="padding: 0.5rem;">
+        <span class="bold color-black fz1">已提现</span>
+      </ion-row>
+      <ion-row style="padding: 0.5rem;">
+        <span class="fz1 color-black" style="width:100%;text-align: center;">999识君币</span>
+        <span class="fz0-8 color-black" style="width:100%;text-align: center;">≈0.00฿</span>
+      </ion-row>
+    </ion-col>
+    <ion-col size="4" style="padding: 0;">
+      <ion-row class="bottom-line flex-box" style="padding: 0.5rem;">
+        <span class="bold color-black fz1">当前收益</span>
+      </ion-row>
+      <ion-row style="padding: 0.5rem;">
+        <span class="fz1 color-black" style="width:100%;text-align: center;">999识君币</span>
+        <span class="fz0-8 color-black" style="width:100%;text-align: center;">≈0.00฿</span>
+      </ion-row>
+    </ion-col>
+  </ion-row>
+  <ion-row class="card-box" style="margin: 0.8rem 1rem;">
+    <ion-item lines="none" style="border-radius: 14px;width: 100%;" (click)="changeShow()">
+      <ion-img style="width: 15px;height: 15px;" src="assets\icon\pig.png" slot="start"></ion-img>
+      <ion-label><span class="color-black fz1 bold">礼物收益</span></ion-label>
+      <i class="iconfont icon-jiantou3 color-grey" slot="end" *ngIf="isShow==false"></i>
+      <i class="iconfont icon-jiantou1 color-grey" slot="end" *ngIf="isShow==true"></i>
+    </ion-item>
+    <ion-list lines="none" style="width: 100%; border-bottom-left-radius: 14px;border-bottom-right-radius: 14px;"
+      *ngIf="isShow==true">
+      <ion-item lines="none" class="top-line" *ngFor="let item of giftList">
+        <ion-img style="width: 15px;height: 15px;" src="{{item.icon}}" slot="start"></ion-img>
+        <ion-label>
+          <ion-row>
+            <ion-col size="6" style="padding: 0;">
+              <span class="color-black fz1">{{item.name}}</span>
+            </ion-col>
+            <ion-col size="6" style="padding: 0;">
+              <span class="color-black fz1">{{item.number}}个</span>
+            </ion-col>
+          </ion-row>
+        </ion-label>
+        <span class="color-black fz1" slot="end">≈{{item.totalMoney}}฿</span>
+      </ion-item>
+    </ion-list>
+  </ion-row>
+  <ion-row style="margin: 0.8rem 1rem;font-family:PingFang SC;">
+    <span class="color-grey fz0-8">1币等于1人民币，按当天汇率进行提现。</span>
+  </ion-row>
+</ion-content>

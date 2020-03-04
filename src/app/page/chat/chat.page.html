@@ -1,0 +1,131 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title style="font-family:PingFang SC;font-weight:500;color:rgba(51,51,51,1);">{{friendName}}</ion-title>
+    <ion-buttons slot="end">
+      <i class="iconfont icon-shengshuai fz1" style="color: grey;padding-right: 1rem;" (click)="showMenu($event)"></i>
+      <!-- <ion-icon name="ellipsis-horizontal-circle-outline" class="fz1-3" style="color: grey;"></ion-icon> -->
+    </ion-buttons>
+  </ion-toolbar>
+  <div class="menu-box" *ngIf="showList">
+    <div class="top_triangle"></div>
+    <div class="item-menu" (click)="addDND(friendId)">消息免打扰</div>
+    <div class="item-menu top-line bottom-line" style="border-color: #585858;" (click)="jumpReport(friendId)">匿名举报</div>
+    <div class="item-menu" (click)="addBlacklist(friendId)">拉黑</div>
+  </div>
+</ion-header>
+
+<ion-content style="background: #FFFEFF;">
+  <ion-grid class="topDiv flex-box" style="justify-content: space-around;">
+    <ion-label class="fz1">看电影</ion-label>
+    <ion-label class="fz1" style="color:rgb(185, 179, 179);">200 元/时</ion-label>
+    <ion-badge class="invited-box fz0-8" (click)="jumpInvited(friendId)">应邀</ion-badge>
+  </ion-grid>
+  <ion-list lines="none" *ngIf="messageList.length>0">
+    <div *ngFor="let item of messageList,let i =index;">
+      <ion-row class="color-grey flex-box"
+        style="width: 100%;text-align: center;font-family: 'PingFangSC-Light';font-weight: lighter;">
+        {{item.sentTime |timechange}}</ion-row>
+      <ion-item *ngIf="item.senderUserId!=userid" class="item-box" style="margin: 0.5rem 0rem;">
+        <ion-thumbnail slot="start" class="flex-box" style="justify-content: flex-start;margin: 0;">
+          <ion-img src="{{item.content.user.portrait}}" style="width: 45px;height: 45px;">
+          </ion-img>
+        </ion-thumbnail>
+        <ion-row size="12" class="flex-box" style="justify-content: flex-start;" slot="start">
+          <div class="chat-left_triangle"></div>
+          <span class="left-message-box fz0-8" style="max-width: 90%;"
+            *ngIf="item.messageType=='TextMessage'">{{changeText(item.content.content)}}</span>
+          <img src="{{item.content.imageUri}}" *ngIf="item.messageType=='ImageMessage'"
+            style="min-width: 100px;height: auto;">
+          <span class="left-message-box fz0-8 flex-box" style="max-width: 90%;padding: 0.2rem 3rem;"
+            *ngIf="item.messageType=='HQVoiceMessage'" (click)="playVoice(item.content.remoteUrl)"><i
+              class="iconfont icon-yuyin fz2"></i></span>
+          <span class="left-message-box fz0-8 flex-box" style="flex-direction: column;max-width: 90%;"
+            *ngIf="item.messageType=='LocationMessage'">{{item.content.poi}}
+            <div class="flex-box" style="width: 100%;min-height: 60px;background: #D6D6D6;min-width: 10rem;">
+              <ion-img src="assets/img/location.png" style="width: 30px;height: 30px;"></ion-img>
+            </div>
+          </span>
+        </ion-row>
+      </ion-item>
+      <ion-item *ngIf="item.senderUserId==userid" class="item-box" style="margin: 0.5rem 0rem;">
+        <ion-row size="12" class="flex-box" style="justify-content: flex-end;" slot="end">
+          <i class="iconfont icon-shiliangzhinengduixiang14 fz0-8" style="margin: auto 0.5rem;color: greenyellow;"></i>
+          <span class="right-message-box fz0-8" style="max-width: 80%;"
+            *ngIf="item.messageType=='TextMessage'">{{changeText(item.content.content)}}</span>
+          <img src="{{item.content.imageUri}}" *ngIf="item.messageType=='ImageMessage'"
+            style="min-width: 100px;height: auto;">
+          <span class="left-message-box fz0-8 flex-box" style="max-width: 80%;padding: 0.2rem 3rem;"
+            *ngIf="item.messageType=='HQVoiceMessage'" (click)="playVoice(item.content.remoteUrl)"><i
+              class="iconfont icon-yuyin fz2"></i></span>
+          <span class="right-message-box fz0-8 flex-box" style="flex-direction: column;max-width: 80%;"
+            *ngIf="item.messageType=='LocationMessage'">{{item.content.poi}}
+            <div class="flex-box" style="width: 100%;min-height: 60px;background: #D6D6D6;min-width: 10rem;">
+              <ion-img src="assets/img/location.png" style="width: 30px;height: 30px;"></ion-img>
+            </div>
+          </span>
+          <div class="chat-right_triangle"></div>
+        </ion-row>
+        <ion-thumbnail slot="end" class="flex-box" style="justify-content: flex-start;margin: 0;">
+          <ion-img src="{{item.content.user.portrait}}" style="width: 45px;height: 45px;">
+          </ion-img>
+        </ion-thumbnail>
+      </ion-item>
+    </div>
+  </ion-list>
+</ion-content>
+<ion-footer>
+  <ion-row size="12" class="flex-box" style="justify-content: space-between; padding: 0.5rem 1rem;" id="inputLan">
+    <div class="flex-box input-box" style="justify-content: space-between; padding: 0.1rem 1rem;max-height: 2.5rem;"
+      [ngStyle]="{'width': messageData!=''?'85%':'100%'}">
+      <ion-img src="assets/icon/speaker.png" class="img20" (click)="reocrd()"></ion-img>
+      <div class="flex-box fz1 color-grey" *ngIf="isStart==true" (press)="startReocrd()" (pressup)="stopRecord()"
+        style="min-height: 40px;width: 100%;">{{btntext}}</div>
+      <ion-input type="text" [(ngModel)]="messageData"
+        style="padding-left: 0.4rem !important;padding-right: 0.4rem !important;" *ngIf="isStart!=true"></ion-input>
+      <ion-img src="assets/icon/expression.png" (click)="showFace()" class="img20" *ngIf="isStart!=true"></ion-img>
+    </div>
+    <span *ngIf="messageData!=''" (click)="sendMsg(messageData)" class="fz1"
+      style="font-family:PingFang SC;font-weight:300;color:rgba(51,51,51,1);">发送</span>
+  </ion-row>
+  <ion-row size="12" *ngIf="showCommonLst" class="top-line">
+    <ion-list lines="none" style="width: 100%;padding: 0;">
+      <ion-item class="fz0-8 color-grey"
+        [ngStyle]="{'border-bottom': i==commonLanList.length-1?'0':'1px solid #eeeeee'}"
+        *ngFor="let item of commonLanList,let i =index;" (click)="setText(item)">{{item}}
+      </ion-item>
+    </ion-list>
+  </ion-row>
+  <ion-row size="12" *ngIf="showFaceList" style="max-height: 30vh;overflow-y: scroll;">
+    <ion-list lines="none" style="width: 100%;height: 100%;padding: 0;">
+      <ion-row size="12">
+        <ion-col size="2" class="flex-box" *ngFor="let item of faceList" (click)="addFace(item)">{{item.emoji}}
+        </ion-col>
+      </ion-row>
+    </ion-list>
+  </ion-row>
+  <ion-row size="12" class="top-line" style="margin-bottom: 0px; padding: 0.2rem 0rem;">
+    <ion-col size="3" class="flex-box" style="flex-direction: column;">
+      <ion-img src="assets/icon/picture.png" class="img20" (click)="chooseImg()"></ion-img>
+      <!-- <ion-icon class="iconfont icon-image fz2"></ion-icon> -->
+      <span class="fz0-8" style="font-weight:300;color:rgba(153,153,153,1);margin-top: 3px;">图片</span>
+    </ion-col>
+    <ion-col size="3" class="flex-box" style="flex-direction: column;" (click)="giftClick()">
+      <ion-img src="assets/icon/gift.png" class="img20"></ion-img>
+      <!-- <ion-icon class="iconfont icon-shiliangzhinengduixiang9 fz2"></ion-icon> -->
+      <span class="fz0-8" style="font-weight:300;color:rgba(153,153,153,1);margin-top: 3px;">礼物</span>
+    </ion-col>
+    <ion-col size="3" class="flex-box" style="flex-direction: column;" (click)="commonLan()">
+      <ion-img src="assets/icon/message.png" class="img20"></ion-img>
+      <!-- <ion-icon class="iconfont icon-liaotian fz2"></ion-icon> -->
+      <span class="fz0-8" style="font-weight:300;color:rgba(153,153,153,1);margin-top: 3px;">常用语</span>
+    </ion-col>
+    <ion-col size="3" class="flex-box" style="flex-direction: column;" (click)="sendLocation()">
+      <ion-img src="assets/icon/bigLocation.png" class="img20"></ion-img>
+      <!-- <ion-icon class="iconfont icon-weizhi fz2"></ion-icon> -->
+      <span class="fz0-8" style="font-weight:300;color:rgba(153,153,153,1);margin-top: 3px;">位置</span>
+    </ion-col>
+  </ion-row>
+</ion-footer>

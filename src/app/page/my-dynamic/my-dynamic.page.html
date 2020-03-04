@@ -1,0 +1,55 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons>
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title style="text-align: center;">动态</ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="releaseDynamic()" style="font-size: 10pt;color: #333333 ;">
+                发布
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+    <div class="menu-box"  *ngIf="showList">
+        <div class="top_triangle"></div>
+        <div style="margin-top: -12px;">
+        <div class="item-menu  bottom-line" style="border-color: #585858;border-width: 1px;font-weight: normal;" [routerLink]="['/release-dynamic']">发布动态</div>
+        <div class="item-menu "  [routerLink]="['/invitation']">发布邀约</div>
+      </div>
+    </div>
+</ion-header>
+
+<ion-content>
+    <ion-card *ngFor="let dynamic of dynamics" >
+
+
+        <ion-item tappable lines="none">
+            <ion-thumbnail slot="start" style="width: 45px;height: 45px;">
+                <img style="height: 45px;width: 45px" src="assets\icon\user.png" alt="头像">
+            </ion-thumbnail>
+            <ion-label >
+                <h2>{{dynamic.nickName}}</h2>
+                <span class="man-lable"
+                      [ngStyle]="{'background-color':dynamic.sex == '1' ? '#ff88eb' : '#88a8ff'}">{{dynamic.age}}
+                    岁</span>
+                <span class="man-lable"
+                      [ngStyle]="{'background-color':dynamic.sex == '1' ? '#ff88eb' : '#88a8ff'}">{{dynamic.profession}}</span>
+            </ion-label>
+        </ion-item>
+
+        <ion-card-content style="padding-top: 0px;padding-bottom: 12px;">
+           <span style="font-size: 15px;font-weight: normal;">{{dynamic.note}}</span> 
+            <ion-item lines="none" style="margin-left: -15px;margin-top: 5px">
+                <ion-img style="height: 103px;width: 103px;margin-right: 5px" [src]="item"
+                         *ngFor="let item of dynamic.photos"></ion-img>
+            </ion-item>
+            <ion-row style="margin-top: 13px;">
+                <ion-col no-padding>
+                    <ion-row style="float: right;font-size: 12px;font-weight: lighter;" > 
+                        2020年2月2日
+                    </ion-row>
+                </ion-col>
+            </ion-row>
+        </ion-card-content>
+    </ion-card>
+</ion-content>

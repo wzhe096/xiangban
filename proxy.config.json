@@ -1,0 +1,11 @@
+{
+    "/general": {
+        "target": "http://www.hctx365.cn",
+        "secure": false,
+        "logLevel": "debug",
+        "changeOrigin": true,
+        "pathRewrite": {
+            "^/myo2o": ""
+        }
+    }
+}

@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>actionSheet</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-button (click)="actionSheet()">
+  弹出ActionSheet
+</ion-button>
+<ion-button (click)="presentToast()">
+  提示消息toast
+</ion-button>
+<ion-button (click)="presentAlertConfirm()">
+  警告消息alert
+</ion-button>
+<ion-button (click)="presentAlertRadio()">
+  警告消息（input列表）alert
+</ion-button>
+<ion-list>
+  <ion-item>
+    <ion-label (press)="doPress()">衣服</ion-label>
+  </ion-item>
+</ion-list>
+
+</ion-content>

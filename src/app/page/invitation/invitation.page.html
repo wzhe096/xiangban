@@ -1,0 +1,87 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title style="text-align: center;position: relative;left: 25px">发布邀约</ion-title>
+    <ion-buttons slot="end" >
+      <ion-button (click)="release()" style="font-size: 10pt;color: #333333;">
+        发布
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+  
+</ion-header>
+
+<ion-content >
+  <ion-card style="margin-top: 15px;">
+    <ion-list >
+      <ion-item style="font-size: 10pt;" lines="none" class="bottom_line"> 
+        <img src="..\..\assets\icon\topic.png" alt="" slot="start" style=" height: 15px;width: 12px;">
+        <ion-label style="font-weight: bold;">邀约主题</ion-label>
+        <ion-select multiple="true">
+          <ion-select-option value="bird" >Bird</ion-select-option>
+          <ion-select-option value="cat">Cat</ion-select-option>
+          <ion-select-option value="dog" >Dog</ion-select-option>
+          <ion-select-option value="honeybadger">Honey Badger</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item class="bottom_line" [routerLink]="['/location']" routerLinkActive="router-link-active" style="font-size: 10pt;" lines="none">
+        <img src="..\..\assets\icon\location.png" alt="" slot="start" style=" height: 12px;width: 15px;">
+        <ion-label style="font-weight: bold;">地点</ion-label>
+        <ion-input class="location" aria-readonly="read" placeholder="请选择" type="text" readonly="readonly"  value="" style="text-align: end;"></ion-input>
+      
+      </ion-item>
+      
+       <ion-item detail style="font-size: 10pt;" lines="none" class="bottom_line">
+        <img src="..\..\assets\icon\time.png" alt="" slot="start" style=" height: 15px;width: 12px;">
+         <ion-label style="margin-left: 2px;font-weight: bold;">时间</ion-label>
+         <ion-datetime display-format="YYYY-MM-DD HH:mm" placeholder="请输入"></ion-datetime>
+      
+      </ion-item>
+      <ion-item  style="font-size: 10pt;" lines="none" detail class="bottom_line">
+        <img src="..\..\assets\icon\location.png" alt="" slot="start" style=" height: 12px;width: 15px;">
+        <ion-label style="font-weight: bold;">价格</ion-label>
+        <ion-input class="location"  type="text" placeholder="请输入"  value="" style="text-align: end;"></ion-input>
+      
+      </ion-item>
+      <ion-item style="font-size: 10pt;" lines="none" >
+        <div class="div_imgall" >
+          <input type="file" class="input_flie" ref="file">
+          <div class="div_shuline" style="font-weight: lighter;">点击上传</div>
+      </div>
+      </ion-item>
+        <!-- <label  *ngFor="let dep of departs; let i = index" class="btn" (click)="changeCss(dep, i)">
+          <span *ngIf="dep.selected">
+         
+            {{dep.name}}
+          </span>
+          <span *ngIf="!dep.selected" style="background-color: red;">
+            {{dep.name}}
+          </span>
+        </label > -->
+      
+    </ion-list>
+  </ion-card>
+  <ion-card style="margin-top: -14px;">
+ 
+      <ion-list>
+        <ion-radio-group name="auto" class="bottom_line">
+          <ion-list-header style="font-size: 12pt;font-weight: bold;">邀约设置</ion-list-header>
+          <ion-item style="font-size: 10pt;" lines="none" >
+            <ion-label>仅男性可见</ion-label>
+            <ion-radio value="tesla"></ion-radio>
+          </ion-item>
+          <ion-item style="font-size: 10pt;" lines="none" class="bottom_line">
+            <ion-label>仅女性可见</ion-label>
+            <ion-radio value="ford"></ion-radio>
+          </ion-item>
+          <ion-item style="font-size: 10pt;" lines="none" class="bottom_line">
+            <ion-label>所有人可见</ion-label>
+            <ion-radio value="allPeaple"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+  </ion-card>
+  <div style="font-size: 10pt;font-weight: lighter;margin-left: 8%;margin-top: -10px;font-family: 'PingFangSC-Light';color: #333333;">开通会员后才能发布邀约，非会员用户不能发布。</div>
+</ion-content>

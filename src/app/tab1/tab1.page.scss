@@ -1,0 +1,74 @@
+.welcome-card img {
+  max-height: 35vh;
+  overflow: hidden;
+}
+img{
+  height: 30%;
+
+}
+.swiper-slide img{
+  width: 100%;
+}
+div{
+  // width:100px;
+  height:40px;
+  text-align: center;
+}
+.item-1{
+  background-color: #000000;
+  color: #FFFFFF;
+  opacity:0.64;
+  margin: 0 auto;
+  line-height: 40px;
+  height: 40px;
+
+}
+
+
+//kai
+.img-group {  position: relative; 
+   display: inline-block;}      
+     .img-tip {  position: absolute; 
+       bottom: 0;  background: #333;  
+       color: #fff;  
+       opacity: 0.6; 
+        display: none;}       
+         .img-group:hover 
+         .img-tip 
+         {  display: block;  width: 100%;  text-align: center;}
+
+         .menu-box {
+          position: absolute;
+          top: 48px;
+          right: 15px;
+          z-index: 1000;
+          width: 30%;
+          height: 203px;
+          margin: 0 auto;
+          border: thin;
+          background:rgba(0,0,0,1);
+          opacity:0.64;
+          border-radius:4px;
+          font-size: 11pt;
+          
+        }
+        .item-menu {
+          text-align: center;
+          width: auto;
+          color: white;
+          line-height: 40px;
+          // padding: 0.5rem;
+        }
+        .top_triangle {
+          height: 0px;
+          width: 0px;
+          border-width: 6px;
+          border-style: solid;
+          border-color:  transparent transparent rgba(0,0,0,1) transparent;
+          position: relative;
+          right: -80%;
+          top: -12px;
+        }
+        .header-ios ion-toolbar:last-child {
+          --border-width: 0;
+        }

@@ -1,0 +1,67 @@
+.man-lable{
+  color: #ffffff;
+  width: 50px;
+  border-radius:5px;
+  text-align: center;
+  margin-right: 5px;
+  font-size: 12px;
+  display:block;
+  float: left;
+}
+.welcome-card img {
+  max-height: 35vh;
+  overflow: hidden;
+}
+.list-1{
+  width:100px;
+  height:40px;
+  text-align: center;
+  border-radius: 8px;
+  border: thin;
+}
+.item-1{
+  background-color: #000000;
+  color: #FFFFFF;
+  opacity:0.64;
+  margin: 0 auto;
+  line-height: 34px;
+  // height: 40px;
+  font-family: 'PingFang-SC-Regular';
+  
+}
+.top_triangle {
+  height: 0px;
+  width: 0px;
+  border-width: 6px;
+  border-style: solid;
+  border-color:  transparent transparent rgba(0,0,0,1) transparent;
+  position: relative;
+  right: -80%;
+  top: -12px;
+}
+.header-ios ion-toolbar:last-child {
+  --border-width: 0;
+}
+
+.menu-box {
+  position: absolute;
+  top: 48px;
+  right: 15px;
+  z-index: 1000;
+  width: 30%;
+  height: 80px;
+  margin: 0 auto;
+  border: thin;
+  background:rgba(0,0,0,1);
+  opacity:0.64;
+  border-radius:4px;
+  font-size: 11pt;
+  
+}
+.item-menu {
+  text-align: center;
+  width: auto;
+  color: white;
+  line-height: 40px;
+  // padding: 0.5rem;
+}

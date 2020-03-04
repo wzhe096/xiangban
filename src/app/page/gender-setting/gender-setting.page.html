@@ -1,0 +1,41 @@
+<!--<ion-header>
+  <ion-toolbar>
+    <ion-title text-center>识君</ion-title>
+  </ion-toolbar>
+</ion-header>-->
+
+<ion-content>
+  <div style="background-image: url('../../../assets/img/backimg.png');background-size: cover;height: 100%"  class="flex-box">
+    <div class="title">相瓣</div>
+    <div style="width: 80%;margin-top: 20%;">
+      <ion-row (click)="genderSetting(2)" class="man-card">
+            <ion-col size="3">
+              <img style="width: 60px;height: 60px" src="assets\icon\man.png" alt="头像">
+            </ion-col>
+            <ion-col size="9">
+                  <ion-row class="fz1" style="color: white">
+                    同城交友很高兴认识你
+                  </ion-row>
+                  <ion-row class="fz1-5" style="margin-top: 10px;color: white">
+                    我是男生
+                    <ion-icon name="ios-arrow-forward" style="margin-left: 27%;margin-top: 8px"></ion-icon>
+                  </ion-row>
+            </ion-col>
+      </ion-row>
+      <ion-row (click)="genderSetting(1)" class="woman-card">
+        <ion-col size="3">
+          <img style="width: 60px;height: 60px" src="assets\icon\woman.png" alt="头像">
+        </ion-col>
+        <ion-col size="9">
+          <ion-row class="fz1" style="color: white">
+            同城交友很高兴认识你
+          </ion-row>
+          <ion-row class="fz1-5" style="margin-top: 10px;color: white">
+            我是女生
+            <ion-icon name="ios-arrow-forward" style="margin-left: 27%;margin-top: 8px"></ion-icon>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </div>
+  </div>
+</ion-content>

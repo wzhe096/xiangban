@@ -1,0 +1,152 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title style="text-align: center;">绑定账号</ion-title>
+  </ion-toolbar>
+</ion-header>
+<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>提现到</ion-card-title>
+    </ion-card-header>
+    <ion-list>
+      <ion-radio-group name="auto" value="tesla">
+
+        <ion-item>
+          <ion-label>支付宝</ion-label>
+          <ion-radio value="tesla"></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>微信</ion-label>
+          <ion-radio value="ford"></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>银联</ion-label>
+          <ion-radio value="ford1"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </ion-list>
+
+  </ion-card>
+  <span style="margin-left: 10px;font-size: small;">预计2小时内到账</span>
+  <ion-card>
+
+    <ion-card-header>
+      <ion-card-title>提现金额</ion-card-title>
+    </ion-card-header>
+    <ion-list>
+      <ion-item>
+        <ion-input type="text" value="￥999"></ion-input>
+      </ion-item>
+    </ion-list>
+    <span>当前收益：999币，满50币可提现，</span><span style="color: cornflowerblue;">全部提现</span>
+  </ion-card>
+  <ion-row>
+    <ion-col size="12" style="text-align: center;margin-top: 5%;">
+      <ion-button (click)="submit()" shape="round" style="--background: rgb(238, 168, 16);color: #FFFFFF;width: 30%;">
+        提现
+      </ion-button>
+    </ion-col>
+  </ion-row>
+  <!-- 支付成功 -->
+  <div *ngIf="isShow">
+    <!--//弹框内容-->
+    <div style="z-index: 11;position: fixed;margin-top: calc(-70%);width: 99%;left: 0%;height: 200px;"
+      ontouchmove="event.preventDefault();event.stopPropagation();">
+      <ion-card>
+
+        <ion-list>
+
+
+          <ion-item>
+            <ion-label style="text-align: center;">请输入支付密码</ion-label>
+          </ion-item>
+          <ion-item lines="none">
+            <div style="text-align: center;margin: 0 auto;">
+              <span>提现￥</span><span style="font-size: 20pt;">{{money}}</span>
+            </div>
+          </ion-item>
+          <ion-item>
+            <ion-col size="12">
+
+
+              <ion-row size="12">
+                <ion-col size="6">
+                  <label style="text-align: left;">服务费</label>
+                </ion-col>
+                <ion-col size="6">
+                  <label style="float: right;">¥50.00</label>
+                </ion-col>
+              </ion-row>
+
+              <ion-row size="12">
+                <ion-col size="6">
+                  <label style="text-align: left;">费率</label>
+                </ion-col>
+                <ion-col size="6">
+                  <label style="float: right;">50%</label>
+                </ion-col>
+              </ion-row>
+            </ion-col>
+          </ion-item>
+          <ion-item>
+          
+            <div class="password-div" style="margin: 0 auto;margin-left: -6%;"> <label for="password" class="password-lable">
+                <ul>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                </ul> <input id="password" type="password" name="password" maxlength="6" oninput="aa">
+              </label> </div>
+
+          </ion-item>
+        </ion-list>
+      </ion-card>
+
+      <img src="assets\img\关闭.png" alt="" (click)="closeSucess()"
+        style="width: 30px;height: 30px;margin: 20% 10% 0 45%;">
+    </div>
+    <!--遮罩-->
+    <div (click)="backdropclick($event)" ontouchmove="event.preventDefault();event.stopPropagation();"
+      style="height: 190%;">
+      <ion-backdrop role="presentation" tappable
+        style="opacity: 0.5; transition-delay: initial; transition-property: none;height: 100%;"></ion-backdrop>
+    </div>
+  </div>
+
+  <!-- 密码输入错误 -->
+  <div *ngIf="ErrorShow">
+    <!--//弹框内容-->
+    <div style="z-index: 11;position: fixed;margin-top: calc(-80%);width: 90%;left: 5%;"
+         ontouchmove="event.preventDefault();event.stopPropagation();">
+        <ion-card >
+          <ion-item >
+            <ion-label style="height: 80px;line-height: 80px;text-align: center;font-family: 'PingFangSC-Medium';font-weight:bold ;">支付密码错误，请重试</ion-label>
+          
+          </ion-item>
+        <ion-item style="width: 100%;">
+          <ion-button (click)="onClick()"  fill="fill" style="width: 50%;color: #333333;">
+            忘记密码
+          </ion-button>
+          <ion-button (click)="onClick()" expand="block" fill="clear"  style="width: 50%;color: #333333;">
+            确定
+          </ion-button>
+        
+        </ion-item>
+      
+        </ion-card>
+
+    </div>
+    <!--遮罩-->
+    <div (click)="backdropclick($event)" ontouchmove="event.preventDefault();event.stopPropagation();" style="height: 100%;">
+        <ion-backdrop role="presentation" tappable
+                      style="opacity: 0.5; transition-delay: initial; transition-property: none;height: 100%;"></ion-backdrop>
+    </div>
+</div>
+</ion-content>

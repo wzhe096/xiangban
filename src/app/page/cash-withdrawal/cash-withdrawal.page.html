@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title style="text-align: center;">提现</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+
+
+    <ion-item-divider class="title">
+      <ion-label>提现到</ion-label>
+    </ion-item-divider>
+    <ion-item>
+      <ion-label>Line</ion-label>
+      <ion-checkbox slot="end"></ion-checkbox>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-label>银联</ion-label>
+      <ion-checkbox slot="end"></ion-checkbox>
+    </ion-item>
+  </ion-card>
+  <div style="margin-left: 20px;color: #999999;font-size: 12px">预计两小时内到账</div>
+  <ion-card>
+    <ion-item-divider class="title">
+      <ion-label>提现金额</ion-label>
+    </ion-item-divider>
+    <ion-row style="margin-left: 15px;font-size: 20px;font-weight: bold;color: black;margin-top: 20px">
+      <span style="margin-top: 10px;margin-right: 20px">$</span>
+      <ion-input></ion-input>
+    </ion-row>
+    <div style="margin-left: 15px;font-size: 12px;color: red" *ngIf="true">输入金额超出当前交易</div>
+    <ion-button style="margin-left:calc(50% - 75px);width: 150px;margin-top: 50px;">提现</ion-button>
+
+  </ion-card>
+</ion-content>

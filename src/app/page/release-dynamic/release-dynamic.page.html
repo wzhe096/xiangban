@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons>
+      <ion-back-button ></ion-back-button>
+    </ion-buttons>
+    <ion-title style="text-align: center;">发布动态</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="releaseDynamic()">
+        发布
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+
+    <ion-card-content>
+      <ion-textarea [(ngModel)]="dynamic.msgContent" style="font-size: 12px;font-family: PingFang-SC-Regular;font-weight: revert" placeholder="文明聊天更受欢迎，请勿上传非法照片及视频.">
+      </ion-textarea>
+      <ion-row>
+        <ion-img *ngFor="let img of imgList" [src]="img" class="img100"></ion-img>
+      </ion-row>
+      <div class="div_imgall" style="margin-top: 10px" (click)="uploadImg()">
+        <div class="div_shuline">点击上传</div>
+      </div>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+
+
+
+    <ion-item style="font-weight: bold">
+      <ion-label>动态设置</ion-label>
+    </ion-item>
+    <ion-item style="font-size: 14px;color: #333333">
+      <ion-label>禁止评论</ion-label>
+      <ion-checkbox [checked]="dynamic.forbiddenComments" slot="end"></ion-checkbox>
+    </ion-item>
+    <ion-item style="font-size: 14px;color: #333333">
+      <ion-label>公开位置</ion-label>
+      <ion-checkbox [checked]="dynamic.openLocation" slot="end"></ion-checkbox>
+    </ion-item>
+    <ion-item style="font-size: 14px;color: #333333" (click)="man = !man;woman = false;all = false">
+      <ion-label>仅男性可见</ion-label>
+      <ion-checkbox [checked]="man" slot="end"></ion-checkbox>
+    </ion-item>
+    <ion-item style="font-size: 14px;color: #333333" (click)="woman = !woman;all = false;man = false">
+      <ion-label>仅女性可见</ion-label>
+      <ion-checkbox [checked]="woman" slot="end"></ion-checkbox>
+    </ion-item>
+    <ion-item style="font-size: 14px;color: #333333" (click)="all = !all;woman = false;man = false">
+      <ion-label>所有人可见</ion-label>
+      <ion-checkbox [checked]="all" slot="end"></ion-checkbox>
+    </ion-item>
+
+
+  </ion-card>
+</ion-content>

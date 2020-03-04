@@ -1,0 +1,299 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button ></ion-back-button>
+    </ion-buttons>
+    <ion-title style="font-size: 14pt;">昵称</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="presentPopover()">
+        <ion-img src="assets\icon\举报.png" slot="end"></ion-img>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <div style="position:absolute; top:40px; right:10px; z-index:1000;width: 25%;margin: 0 auto;font-size: 13px;" class="list-1" *ngIf="showList">
+    <div class="top_triangle"></div>
+    <div class="item-1">消息免打扰</div>
+    <div class="item-1 top-line bottom-line" style="border-color: #585858;" [routerLink]="['/report']" routerLinkActive="router-link-active" >匿名举报</div>
+    <div class="item-1" (click)="block()" >拉黑</div> 
+  </div>
+</ion-header>
+
+<ion-content>
+   <ion-list style="margin-top: 15px;">
+    <ion-item>
+      <img src="/assets/img/图层4.png" alt="" style="width: 100%;" />
+    </ion-item>
+   </ion-list>
+      <ion-card style="margin-top: 15px;">
+          <div class="div-c">
+              <img src="/assets/img/444.png" style="height: 50px;width: 50px;"/>
+          </div>
+          <div class="div-d" style="margin-left: -5px;">
+              <div style="height: 40%;margin-top: 8px;">
+                  <span class="fz1" style="float: left;color: #333333;font-weight: bold">汤姆</span>
+                  <ion-button style="float: right;height: 18px;border-radius:10px;text-align: center;width:47px;--background:linear-gradient(-45deg, #F41CDD, #A925ED);font-size: 10pt;">关注</ion-button>
+              </div>
+              <div style="height: 40%;margin-top: 4px;">
+                  <ion-label>
+                      <span class="man-lable">
+                          {{peapleInfo.age}}岁
+                      </span>
+                      <span class="man-lable">
+                          {{peapleInfo.job}}
+                      </span>
+                  </ion-label>
+                  <span class="fz0-5" style="float: right;color: #999999;">{{peapleInfo.distance}}刚刚在线</span>
+              </div>
+          </div>
+      </ion-card>
+
+
+    <ion-card style="margin-top: -10px 0px 20px 0px;">
+        <ion-card-content style="padding-top: 5px;">
+            <ion-list>
+                <ion-item class="fz1" lines="none" style="font-weight: bold;border-bottom: #eeeeee 1px solid;" no-padding  detail tappable routerLink="/his-dynamic">
+                    <ion-label >{{'his_dynamic'|translate}}</ion-label>
+                </ion-item>
+                <div style="padding-top: 5px;padding-bottom: 5px">
+                    {{dynamic.note}}
+                </div>
+
+                <ion-item lines="none" no-padding>
+                    <img style="height: 90px;width: 33.3%;margin-left: 3px" [src]="item"
+                             *ngFor="let item of dynamic.photos">
+                </ion-item>
+            </ion-list>
+        </ion-card-content>
+
+    </ion-card>
+
+    <ion-card style="margin-top: -10px;">
+        <ion-card-content style="padding-top: 5px;padding-bottom: 5px">
+            
+                <ion-item no-padding class="bottom_line" style="font-weight: bold;" lines="none" >
+                    {{'release_invitation'|translate}}
+                </ion-item>
+                <ion-item class="small-font" no-padding style="font-size: 16px;border-bottom: #eeeeee 1px solid;" lines="none"  >
+                    <ion-label>{{'see_film'|translate}} (300/次)</ion-label>
+                    <ion-button shape="round" style="text-align: center;width:40px;--background: linear-gradient(-45deg, #F41CDD, #A925ED);font-size: 10pt;line-height: 18pt;height: 18px;">应邀</ion-button>
+                </ion-item>
+                <ion-item class="small-font" no-padding lines="none" style="font-size: 16px;" lines="none">
+                    <ion-label>{{'eat'|translate}}</ion-label>
+                    <ion-button shape="round" style="text-align: center;width:40px;--background: linear-gradient(-45deg, #F41CDD, #A925ED);font-size: 10pt;line-height: 18pt;height: 18px;">应邀</ion-button>
+                </ion-item>
+
+
+        </ion-card-content>
+
+    </ion-card>
+
+    <ion-card style="margin-top: -10px;">
+        <ion-card-content style="padding-bottom: 10px;padding-top: 5px">
+            <ion-item no-padding lines="none"  class="bottom_line" style="font-weight: bold;border-bottom: #eeeeee 1px solid;">
+                相册
+            </ion-item>
+            <ion-list>
+              
+         
+            <ion-item lines="none" no-padding style="margin-top: 5px;" >
+                <img style="height: 100%;width: 33.3%;margin-left: 3px" [src]="item"
+                         *ngFor="let item of user.photos">
+            </ion-item>
+          </ion-list>
+        </ion-card-content>
+    </ion-card>
+    <ion-card style="margin-top: -10px;">
+        <ion-list>
+            <ion-item class="fz1" lines="none" style="border-bottom: #eeeeee 1px solid;">
+                <ion-label style="font-weight: bold">资料</ion-label>
+            </ion-item>
+            <ion-item  lines="none" style="border-bottom: #eeeeee 1px solid;">
+                <ion-label>昵称</ion-label>
+                <span style="font-weight: lighter;font-size: 10pt;">{{user.nickName}}</span>
+            </ion-item>
+            <ion-item  lines="none" style="border-bottom: #eeeeee 1px solid;">
+                <ion-label>ID</ion-label>
+               
+                <span style="font-weight: lighter;font-size: 10pt;"> {{user.userName}}</span>
+            </ion-item>
+            <ion-item  lines="none" style="border-bottom: #eeeeee 1px solid;">
+                <ion-label>年龄</ion-label>
+                
+                <span style="font-weight: lighter;font-size: 10pt;">{{user.age}}</span>
+            </ion-item>
+            <ion-item  lines="none" style="border-bottom: #eeeeee 1px solid;">
+                <ion-label>城市</ion-label>
+               
+                <span style="font-weight: lighter;font-size: 10pt;"> {{user.city}}</span>
+            </ion-item>
+            <ion-item  lines="none" style="border-bottom: #eeeeee 1px solid;">
+                <ion-label>外貌</ion-label>
+            </ion-item>
+            <ion-item  lines="none" style="border-bottom: #eeeeee 1px solid;">
+                <ion-label>通讯</ion-label>
+               
+                <span style="font-weight: lighter;font-size: 10pt;"> {{user.mobile}}</span>
+            </ion-item>
+            <ion-item   lines="none" style="border-bottom: #eeeeee 1px solid;">
+                <ion-label>收入</ion-label>
+               
+                <span style="font-weight: lighter;font-size: 10pt;"> {{user.income}}</span>
+            </ion-item>
+            <ion-item detail  lines="none">
+                <ion-label>评价</ion-label>
+                <span slot="end">
+        <ion-icon name="star" style="color: #FFEE7C;"></ion-icon>
+        <ion-icon name="star-half" style="color: #FFEE7C;"></ion-icon>
+        <ion-icon name="star-outline" style="color: #FFEE7C;"></ion-icon>
+        <ion-icon name="star-outline" style="color: #FFEE7C;"></ion-icon>
+        <ion-icon name="star-outline" style="color: #FFEE7C;"></ion-icon>
+        </span>
+
+            </ion-item>
+        </ion-list>
+    </ion-card>
+<!-- 
+    <ion-row style="margin-top: 20px;margin-right: 15px;margin-bottom: 20px;position: fixed;margin-bottom: 0;margin-top: calc(-205%);width: 90%;left: 5%;">
+        <ion-col size="6">
+            
+                <ion-img src="assets\icon\礼物1.png"
+                         style="width: 15px;height: 15px;margin-top: 3px;margin-right: 10px;margin-top: 1px;"></ion-img>
+        </ion-col>
+        <ion-col size="6" style="text-align: center;">
+          <button style="border-radius:10px;text-align: center;width:40px;background-color: #8ba8f2;color: #fdfffb;font-size: 8pt;line-height: 20px;" (click)="toChat()">私聊</button>
+        
+        </ion-col>
+    </ion-row> -->
+
+   
+   
+<!-- 去支付 -->
+  <div *ngIf="isShow">
+    <!--//弹框内容-->
+    <div style="z-index: 11;position: fixed;margin-top: calc(-320%);width: 90%;left: 5%;"
+         ontouchmove="event.preventDefault();event.stopPropagation();">
+        <ion-card >
+        <ion-item style="font-size: 13px;font-weight: 800;font-family: 'PingFangSC-Regular';">
+          <ion-label>支付</ion-label>
+          <ion-label style="margin-left: 20%;">可用0识君币</ion-label>
+          <img src="assets\img\刷新.png" alt="" style="width: 20px;height:20px;">
+        </ion-item>
+         <ion-item style="font-size: 13px;font-family: 'PingFangSC-Regular';">
+           <ion-label>支付内容</ion-label>
+           <ion-label style="text-align: right;">资料解锁</ion-label>
+         </ion-item>
+         <ion-item style="font-size: 13px;font-family: 'PingFangSC-Regular';">
+          <ion-label>支付金额</ion-label>
+          <ion-label style="text-align: right;">50识君币</ion-label>
+        </ion-item>
+        <ion-item>
+          
+        </ion-item>
+        <ion-item style="width: 100%;--background:#8BA0F1 ;">
+          <ion-button routerLink="/recharge" fill="fill" style="width: 50%;color: #FFFFFF;">
+            充值
+          </ion-button>
+          <!-- <div style="background-color: seashell;width: 2px;"></div> -->
+          <ion-button expand="block" fill="clear"  style="width: 50%;--background: #8BA0F1;color: #FFFFFF;">
+            确认支付
+          </ion-button>
+          <!-- <ion-row size="12">
+            <ion-col size="6">充值</ion-col>
+            <ion-col size="6">确认支付</ion-col>
+          </ion-row> -->
+        </ion-item>
+      
+        </ion-card>
+
+        <img src="assets\img\关闭.png" alt="" (click)="close()" style="width: 30px;height: 30px;margin: 20% 10% 0 45%;">
+        <!-- <div style="background-color: #4c8dff;width: 100%;height: 100px">qqqqqqqqqq</div> -->
+    </div>
+    <!--遮罩-->
+    <div (click)="backdropclick($event)" ontouchmove="event.preventDefault();event.stopPropagation();" style="height: 190%;">
+        <ion-backdrop role="presentation" tappable
+                      style="opacity: 0.5; transition-delay: initial; transition-property: none;height: 220%;"></ion-backdrop>
+    </div>
+</div>
+
+<!-- 支付成功 -->
+<div *ngIf="paySuccessShow">
+  <!--//弹框内容-->
+  <div style="z-index: 11;position: fixed;margin-top: calc(-236%);width: 90%;left: 5%;"
+       ontouchmove="event.preventDefault();event.stopPropagation();">
+      <ion-card>
+       
+          
+        
+      <ion-item >
+        <ion-label style="height: 80px;line-height: 80px;">抱歉，您的余额不足请充值后再次支付</ion-label>
+      
+      </ion-item>
+      
+      <ion-item style="width: 100%;--background:#8BA0F1 ;">
+        <ion-button (click)="onClick()"  fill="fill" style="width: 100%;color: #FFFFFF;">
+          充值
+        </ion-button>
+      </ion-item>
+
+      </ion-card>
+
+      <img src="assets\img\关闭.png" alt="" (click)="closeSucess()" style="width: 30px;height: 30px;margin: 20% 10% 0 45%;">
+  </div>
+  <!--遮罩-->
+  <div (click)="backdropclick($event)" ontouchmove="event.preventDefault();event.stopPropagation();" style="height: 190%;">
+      <ion-backdrop role="presentation" tappable
+                    style="opacity: 0.5; transition-delay: initial; transition-property: none;height: 190%;"></ion-backdrop>
+  </div>
+</div>
+
+<!-- 私聊前支付 -->
+<div *ngIf="reportSuccessShow">
+  <!--//弹框内容-->
+  <div style="z-index: 11;position: fixed;margin-top: calc(-235%);width: 109%;margin-left: -16px;"
+       ontouchmove="event.preventDefault();event.stopPropagation();">
+      <ion-card>
+       
+          
+        
+      <ion-item >
+        <ion-label >私聊</ion-label>
+        <ion-label style="text-align: right;" (click)="closeChat()">取消</ion-label>
+
+      </ion-item>
+      
+      <ion-item style="width: 100%;">
+        <ion-label style="font-size: 9pt;">50识君币即可发送十条消息</ion-label>
+        <ion-button (click)="onClick()"  fill="fill" shape="round" style="width: 30%;color: #FFFFFF;--background: #FFAE3A;" [routerLink]="['/order']" routerLinkActive="router-link-active" >
+          确认支付
+        </ion-button>
+      </ion-item>
+      <ion-item style="width: 100%;">
+        <ion-label style="font-size: 9pt;">开通会员可免费</ion-label>
+        <ion-button routerLink="/open-membership"  fill="fill" shape="round" style="width: 30%;color: #FFFFFF;--background: #FFAE3A;">
+          开通会员
+        </ion-button>
+      </ion-item>
+
+      </ion-card>
+
+  </div>
+  <!--遮罩-->
+  <div (click)="backdropclick($event)" ontouchmove="event.preventDefault();event.stopPropagation();" style="height: 190%;">
+      <ion-backdrop role="presentation" tappable
+                    style="opacity: 0.5; transition-delay: initial; transition-property: none;height: 220%;"></ion-backdrop>
+  </div>
+</div>
+</ion-content>
+<ion-footer>
+ <ion-row >
+   <ion-col size="6" style="text-align: center;margin: 0 auto;line-height: 35px;">
+    <img src="assets\icon\礼物1.png"
+    style="width: 15px;height: 15px;">
+   </ion-col>
+   <ion-col size="6" style="text-align: center;background:linear-gradient(-45deg, #7BCDF3, #8BA0F1);color: #FFFFFF;line-height: 35px;font-size: 10pt;"  [routerLink]="['/chat']" routerLinkActive="router-link-active" >
+    私聊
+
+   </ion-col>
+ </ion-row>
+</ion-footer>
+

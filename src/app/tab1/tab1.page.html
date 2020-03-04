@@ -1,0 +1,177 @@
+<ion-header>
+  <ion-toolbar>
+    <!-- <ion-buttons slot="start">
+      <ion-menu-button menu="left"></ion-menu-button>
+    </ion-buttons> -->
+    <ion-title>
+      首页
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="presentPopover()" style="font-size: 10pt;color: #333333;">
+        <!-- <ion-icon slot="start" name="add"></ion-icon> -->
+        筛选
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+  <!--<div style="background-color: #1e2023">-->
+
+
+  <!--    <ion-list style="position:absolute; top:40px; right:10px; z-index:1000;"  *ngIf="showList">-->
+  <!--      <ion-item lines="none" class="a" style="color: red;"><i style="background-color: black;width: 120%">最新</i></ion-item>-->
+  <!--      <ion-item lines="none" style="color: #FFFFFF;"><i style="background-color: black;">最新</i></ion-item>-->
+  <!--      <ion-item lines="none" style="color: #FFFFFF;">只看女生</ion-item>-->
+  <!--      <ion-item lines="none" style="color: #FFFFFF;">只看男生</ion-item>-->
+  <!--      <ion-item lines="none" style="color: #FFFFFF;">查看全部</ion-item>-->
+  <!--    </ion-list>-->
+  <!--</div >-->
+  <!-- style="position:absolute; top:40px; right:10px; z-index:1000;width: 30%;margin: 0 auto;border: thin;" -->
+  <div class="menu-box" *ngIf="showList">
+    <div class="top_triangle"></div>
+    <div style="margin-top: -12px;">
+    <div class="item-menu">附近</div>
+    <div class="item-menu top-line bottom-line" style="border-color: #585858;border-width: 0.1px;">最新</div>
+    <div class="item-menu  bottom-line" style="border-color: #585858;border-width: 0.1px;" (click)="showGirl()">只看女生</div>
+    <div class="item-menu  bottom-line" style="border-color: #585858;border-width: 0.1px;" (click)="showBoy()">只看男生</div>
+    <div class="item-menu" (click)="showAll()">查看全部</div>
+  </div>
+  </div>
+</ion-header>
+
+<ion-content  >
+ 
+  <ion-row size="12" style="padding: 0px;">
+    
+    <ion-col height="100%" style="margin-top: -4%;" no-padding>
+      <!-- style="height: 33%;" -->
+  <ion-card class="welcome-card" style="height: 52%;">
+    <!-- <img src="..\..\assets\img\111.png" alt="" /> -->
+    <ion-slides [options]="slideOpts">
+      <!-- <ion-slide>
+        <img src="assets\img\111.png" alt="" />
+      </ion-slide> -->
+      <ion-slide>
+        <img src="assets\img\yueding.png" alt="" [routerLink]="['/convention']" routerLinkActive="router-link-active" >
+       </ion-slide>
+      <ion-slide>
+        <img src="assets\img\2.jpg" alt="">
+       </ion-slide>
+       <ion-slide>
+        <img src="assets\img\000.jpg" alt="">
+       </ion-slide>
+    </ion-slides>
+  </ion-card>
+</ion-col>
+</ion-row>
+<ion-row style="margin-top: -34%;" size="12">
+  <ion-col size="12" style="padding-left: 0px;padding-right: 0px;">
+  <ion-card>
+    <ion-row>
+      <ion-col size="2" style="padding-top: 10px;padding-bottom: 10px;">
+        <img src="assets\icon\left.png" alt="" style="width: 15px;height: 15px;margin-left: 20%;">
+      </ion-col>
+      <ion-col size="10" style="padding-top: 10px;padding-bottom: 10px;">
+        <span style="width: 60%;font-size: 10pt;color: #8BA0F1;margin-left: -8%;">小花邀请了3人获得3.3的现金</span>
+
+      </ion-col>
+    </ion-row>
+    
+
+  </ion-card>
+    
+  </ion-col>
+</ion-row>
+<ion-row >
+  <!-- style="margin-top: -16%;" -->
+<ion-col size="12" style="margin-top:-1%;" no-padding>
+  <ion-card *ngFor="let item of peapleInfo1" style="margin-top: -4%;" >
+    <div style="position:relative;width:100%;height:100%;"  *ngIf="showList">
+      <img src='{{item.src}}' alt="" style="width: 100%;height:100%;"/>
+      <div style="position:absolute;width:100%;min-height:105px;z-index:2;left:0;bottom:0;opacity:0.7;background-color: #000000;">
+        <ion-row style="left:-105px ;margin-top:5px" size="12" >
+          <ion-col size="3">
+            <img  src="..\..\assets\img\444.png" style="width: 60%;height: 90%;margin-left: 7px;opacity:1;margin-top: 6%;" />          
+
+          </ion-col>
+          <ion-col size="2">
+            <div style="color:#FFFFFF;opacity:1;font-weight: SC-Bold;font-size: 10pt;line-height: 54px; font-family: 'PingFang-SC-Bold';width: 70px;margin-left: -30px;">紧密俩</div>
+
+          </ion-col>
+          <ion-col size="7">
+            
+          <ion-button  (click)="toFollow(item.index)" *ngIf="item.followName=='关注'" style="margin-left: 48%;height: 20px;opacity:1;--background:linear-gradient(-45deg, #F41CDD, #A925ED);margin-top: 18px;width: 20px;font-size: 8pt;" shape="round">
+            {{item.followName}}
+          </ion-button>
+          <ion-button (click)="toFollow(item.index)" *ngIf="item.followName=='已关注'" style="margin-left: 48%;height: 20px;opacity:1;--background:#999999;margin-top: 15px;width: 20px;font-size: 8pt;" shape="round">
+            {{item.followName}}
+          </ion-button>
+        </ion-col>
+        </ion-row>
+        <ion-row style="padding-top: -50px;" size="12">
+<ion-col size="2"  >
+  <div
+  style="background-color:  #8BA0F1;width: 44px;height: 15px; margin-left: 17%;color: white;text-align: center;opacity:1;font-size:8pt ;border-radius: 2px;" 
+  [ngStyle]="{'background-color':item.sex == '1' ? '#ff88eb' : '#88a8ff'}" 
+  >{{item.age}}岁</div>
+</ion-col>
+<ion-col size="4">
+  <div
+  style="background-color:  #8BA0F1;width: 44px;height: 15px;color: white;text-align: center;opacity:1;font-size:8pt ;border-radius: 2px;margin-left: 2px;"
+  [ngStyle]="{'background-color':item.sex == '1' ? '#ff88eb' : '#88a8ff'}" 
+  >{{item.job}}</div>
+</ion-col>
+<ion-col size="6">
+  <div style="width: 60%; text-align: center; float: right; color: white;font-family: 'PingFang-SC-Medium';font-weight: normal;font-size:8pt ;"> {{item.distance}} 刚刚在线</div>
+</ion-col>
+      </ion-row>
+      </div>
+    </div>
+
+
+
+    <div style="position:relative;width:100%;height:100%;" routerLink="/user-details" *ngIf="!showList">
+      <img src='{{item.src}}' alt="" style="width: 100%;height:100%;"/>
+      <div style="position:absolute;width:100%;min-height:105px;z-index:2;left:0;bottom:0;opacity:0.7;background-color: #000000;">
+        <ion-row style="left:-105px ;margin-top:5px" size="12" >
+          <ion-col size="3">
+            <img  src="..\..\assets\img\444.png" style="width: 60%;height: 90%;margin-left: 7px;opacity:1;margin-top: 6%;" />          
+
+          </ion-col>
+          <ion-col size="2">
+            <div style="color:#FFFFFF;opacity:1;font-weight: SC-Bold;font-size: 10pt;line-height: 54px; font-family: 'PingFang-SC-Bold';width: 70px;margin-left: -30px;">紧密俩</div>
+
+          </ion-col>
+          <ion-col size="7">
+            
+          <ion-button  (click)="toFollow(item.index)" *ngIf="item.followName=='关注'" style="margin-left: 48%;height: 20px;opacity:1;--background:linear-gradient(-45deg, #F41CDD, #A925ED);margin-top: 18px;width: 20px;font-size: 8pt;" shape="round">
+            {{item.followName}}
+          </ion-button>
+          <ion-button (click)="toFollow(item.index)" *ngIf="item.followName=='已关注'" style="margin-left: 48%;height: 20px;opacity:1;--background:#999999;margin-top: 15px;width: 20px;font-size: 8pt;" shape="round">
+            {{item.followName}}
+          </ion-button>
+        </ion-col>
+        </ion-row>
+        <ion-row style="padding-top: -50px;" size="12">
+<ion-col size="2"  >
+  <div
+  style="background-color:  #8BA0F1;width: 44px;height: 15px; margin-left: 17%;color: white;text-align: center;opacity:1;font-size:8pt ;border-radius: 2px;" 
+  [ngStyle]="{'background-color':item.sex == '1' ? '#ff88eb' : '#88a8ff'}" 
+  >{{item.age}}岁</div>
+</ion-col>
+<ion-col size="4">
+  <div
+  style="background-color:  #8BA0F1;width: 44px;height: 15px;color: white;text-align: center;opacity:1;font-size:8pt ;border-radius: 2px;margin-left: 2px;"
+  [ngStyle]="{'background-color':item.sex == '1' ? '#ff88eb' : '#88a8ff'}" 
+  >{{item.job}}</div>
+</ion-col>
+<ion-col size="6">
+  <div style="width: 60%; text-align: center; float: right; color: white;font-family: 'PingFang-SC-Medium';font-weight: normal;font-size:8pt ;"> {{item.distance}} 刚刚在线</div>
+</ion-col>
+      </ion-row>
+      </div>
+    </div>
+  </ion-card>
+</ion-col>
+</ion-row>
+ 
+</ion-content>

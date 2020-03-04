@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title style="text-align: center;">登录</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- <ion-list >
+    <ion-item>
+      <ion-label>账户</ion-label>
+      <ion-input ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>密码</ion-label>
+      <ion-input type="password"></ion-input>
+    </ion-item>
+  </ion-list> -->
+  <form (ngSubmit)="login()"  >
+    <ion-item>
+      <ion-label position="floating">E-Mail <ion-text color="danger">*</ion-text></ion-label>
+      <ion-input required [(ngModel)]="userInfo.userName" type="text" name="1"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Password <ion-text color="danger">*</ion-text></ion-label>
+      <ion-input required [(ngModel)]="userInfo.pwd" type="password" name="2"></ion-input>
+    </ion-item>
+    <!-- <ion-item>
+      <ion-label position="floating">性别 <ion-text color="danger">*</ion-text></ion-label>
+      <ion-input required [(ngModel)]="userInfo.sex" type="radio" value="1" name="sex">男</ion-input>
+      <ion-input required [(ngModel)]="userInfo.sex" type="radio" value="2" name="sex">女</ion-input>
+
+    </ion-item>
+       -->
+    
+     <div style="text-align: center;">
+      <ion-button block color="primary" type="submit"  name="3">
+        Login
+      </ion-button>
+     </div>
+    
+  </form>
+  <!-- <div style="text-align: center;"> 
+    <ion-button (click)="login()" size="large" color="danger"  >
+      登录
+    </ion-button>
+  </div> -->
+</ion-content>

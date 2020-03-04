@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title style="text-align: center;">验证本人身份</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-card>
+  <ion-list>
+    <ion-item>
+      <ion-label>姓名</ion-label>
+      <ion-input type="text" placeholder="**亮（请输入完整姓名）"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>证件类型</ion-label>
+      <ion-input type="text" name="tname" value ="身份证" readonly="readonly"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>证件号</ion-label>
+      <ion-input type="text" placeholder="请输入证件号"></ion-input>
+    </ion-item>
+  </ion-list>
+</ion-card>
+
+    <ion-row>
+      <ion-col size="12" style="text-align: center;margin-top: 20%;">
+        <ion-button (click)="onClick()" shape="round" style="--background: #8BA0F1;color: #FFFFFF;width: 90%;">
+          下一步
+           </ion-button>
+      </ion-col>
+    </ion-row>
+      
+   
+   
+</ion-content>

@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title style="text-align: center;">我的钱包</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-list>
+      <ion-item lines="none" routerLink="/tabs/mine/modify-password">
+        <ion-img slot="start" style="width: 15px;height: 15px;" src="assets\icon\money.png"></ion-img>
+        <ion-label slot="start">账户余额</ion-label>
+        <p>{{money}}识君币</p>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+  <ion-grid>
+    <ion-row style="width: 100%;">
+      <ion-col size="4">
+        <div class="flex-box checked-box" style="flex-direction: column;">
+          <span class=" fz1">10 识君币</span>
+          <span class=" fz0-8">10 泰铢</span>
+        </div>
+      </ion-col>
+      <ion-col size="4">
+        <div class="flex-box unchecked-box" style="flex-direction: column;">
+          <span class="color-black fz1">50 识君币</span>
+          <span class="color-grey fz0-8">50 泰铢</span>
+        </div>
+      </ion-col>
+      <ion-col size="4">
+        <div class="flex-box unchecked-box" style="flex-direction: column;">
+          <span class="color-black fz1">100 识君币</span>
+          <span class="color-grey fz0-8">100 泰铢</span>
+        </div>
+      </ion-col>
+      <ion-col size="4">
+        <div class="flex-box unchecked-box" style="flex-direction: column;">
+          <span class="color-black fz1">1000 识君币</span>
+          <span class="color-grey fz0-8">1000 泰铢</span>
+        </div>
+      </ion-col>
+      <ion-col size="4">
+        <div class="flex-box unchecked-box" style="flex-direction: column;">
+          <span>其他金额</span>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <div style="margin-left: 20px;color: #999999;font-size: 12px;float: left;">1币等于1人民币，按当天汇率充值金额不同为正常情况</div>
+
+
+  <ion-row style="margin-left: 20px;margin-top: 5px;float: left;">
+    <input name="money" type="radio" style="margin-top: 5px;margin-right: 5px">
+    <ion-label style="margin-right: 15px">微信</ion-label>
+    <input name="money" type="radio" style="margin-top: 5px;margin-right: 5px">
+    <ion-label style="margin-right: 15px">支付宝</ion-label>
+    <input name="money" type="radio" style="margin-top: 5px;margin-right: 5px">
+    <ion-label>银联</ion-label>
+
+  </ion-row>
+  <ion-list>
+
+  </ion-list>
+  <ion-button
+    style="--background:#FFAE3A;--border-radius: 20px;margin-left:calc(50% - 75px);width: 170px;height:44px;margin-top: 50px">
+    充值</ion-button>
+</ion-content>

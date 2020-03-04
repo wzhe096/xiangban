@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title style="text-align: center;position: relative;left: 25px">发表评价</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="Click()">
+        发布
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-card>
+<ion-row size="12">
+ 
+  <ion-col size="2">
+    <img routerLink="/user-details" src="..\..\assets\img\444.png" style="width: 40px;height: 40px;margin-left: 10px;opacity:1;" />
+  </ion-col>
+
+
+  <ion-col size="10">
+    <ion-row >
+      
+      <i style="width: 50px">紧密俩</i>
+    
+    </ion-row>
+    <ion-row >
+
+      <i
+        style="text-align: center;opacity:1;">应邀内容：看电影</i>
+</ion-row>
+
+
+ </ion-col>
+ <ion-list style="margin: 0 14%;" >
+  <ion-item style="width: 300px;" >
+   
+     
+   
+    <span class="a1" shape="round" style="width: 20%;" (click)="changeColor1()">专业1</span>
+    <span class="a1" style="width: 20%;margin-left: 5%;">温柔</span>
+    <span class="a1" style="width: 20%;margin-left: 5%;">男神</span>
+    <span class="a1" style="width: 20%;margin-left: 5%;">好看</span>
+    <span class="a1" style="width: 20%;margin-left: 5%;">女神</span>
+
+  </ion-item>
+  <ion-item style="width: 300px;">
+    <span class="a1" shape="round" style="width: 20%;" (click)="changeColor1()">专业1</span>
+    <span class="a1" style="width: 20%;margin-left: 5%;">温柔</span>
+    <span class="a1" style="width: 20%;margin-left: 5%;">男神</span>
+    <span class="a1" style="width: 20%;margin-left: 5%;">好看</span>
+    <span class="a1" style="width: 20%;margin-left: 5%;">女神</span>
+  </ion-item>
+</ion-list>
+<ion-col size="12" style="margin: 0 17%;">
+  <ion-row size="6">给个好评吧！</ion-row>
+  <ion-row size="6">
+    <img src="..\..\assets\img\评价.png" alt="" >
+    <img src="..\..\assets\img\评价.png" alt="" >
+    <img src="..\..\assets\img\未评价.png" alt="" >
+    <img src="..\..\assets\img\未评价.png" alt="" >
+    <img src="..\..\assets\img\未评价.png" alt="" >
+  </ion-row>
+</ion-col>
+</ion-row>
+ 
+
+
+
+</ion-card>
+</ion-content>

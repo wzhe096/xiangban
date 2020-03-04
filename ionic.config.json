@@ -1,0 +1,13 @@
+{
+  "name": "proxy-example",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular",
+  "proxies": [
+    {
+      "path": "/general",
+      "proxyUrl": "http://www.hctx365.cn"
+    }
+  ]
+}

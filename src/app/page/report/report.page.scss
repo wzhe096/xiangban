@@ -1,0 +1,54 @@
+.title{
+  font-size: 10pt;
+  font-family: PingFang-SC-Bold;
+  font-weight: bold;
+  color: #333333;
+}
+.item{
+  font-size: 10pt;
+  font-family: PingFang-SC-Regular;
+  font-weight: revert;
+  color: #333333;
+}
+.cardHeader{
+  font-size: 14pt;
+  font-family: PingFang-SC-Bold;
+  font-weight: bold;
+  color: #333333;
+}
+.div_imgall{
+  //border:1px solid blue;
+  /* 调整div_imgall的宽高和berder的大小，子元素大小会自适应 */
+  width:100px;
+  height:100px;
+  position: relative;
+  background-color: #EEEEEE;
+}
+.input_flie{
+  display:block;
+  width:100%;
+  height:100%;
+  opacity:0;
+  z-index: 100;
+  position: absolute;
+  left:0; top:0;
+  background-color: #EEEEEE;
+}
+.div_shuline{
+  position: absolute;
+  width:70%;
+  height:2%;
+  //background-color: blue;
+  left: 25%;
+  top:42%;
+  z-index: 5;
+}
+.div_hengline{
+  position: absolute;
+  width:2%;
+  height:50%;
+  background-color: blue;
+  left: 49%;
+  top:25%;
+  z-index: 5;
+}

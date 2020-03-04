@@ -1,0 +1,89 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button ></ion-back-button>
+    </ion-buttons>
+    <ion-title>按钮页面</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-button [routerLink]="['/datetime']" routerLinkActive="router-link-active" >
+  去datetime
+</ion-button>
+<ion-list>
+  <ion-item *ngFor="let item of list">
+    <ion-label>{{item}}</ion-label>
+  </ion-item>
+</ion-list>
+
+
+<ion-list >
+  <ion-item-divider>
+    <ion-label>基本信息</ion-label>
+  </ion-item-divider>
+  <ion-item>
+    <ion-label>用户名</ion-label>
+    <ion-input [(ngModel)]="peapleInfo.username"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>年龄</ion-label>
+    <ion-input [(ngModel)]="peapleInfo.age"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>是否本科</ion-label>
+    <ion-toggle slot="end" [(ngModel)]="peapleInfo.flag"></ion-toggle>
+  </ion-item>
+
+    <ion-item-divider>
+      <ion-label>支付方式</ion-label>
+    </ion-item-divider>
+  
+     <ion-radio-group [(ngModel)]="peapleInfo.payType">
+       <ion-list-header>支付方式2</ion-list-header>
+       <ion-item>
+         <ion-avatar>
+           <img src="assets\icon\favicon.png" />
+         </ion-avatar>
+         <ion-label>支付宝</ion-label>
+         <ion-radio value="1"></ion-radio>
+       </ion-item>
+       <ion-item>
+        <ion-avatar>
+          <img src="assets\icon\favicon.png" />
+        </ion-avatar>
+         <ion-label>微信</ion-label>
+         <ion-radio value="2"></ion-radio>
+       </ion-item>
+     </ion-radio-group>
+   
+<ion-item-divider>
+  <ion-label>爱好</ion-label>
+</ion-item-divider>
+  <ion-item *ngFor="let item of peapleInfo.checkBoxList">
+    <ion-label>{{item.val}}</ion-label>
+    <ion-checkbox slot="start" [(ngModel)]="item.isChecked"></ion-checkbox>
+  </ion-item>
+  <ion-item>
+    <ion-label>城市</ion-label>
+    <ion-select multiple="false" placeholder="选择城市" [(ngModel)]="peapleInfo.city">
+      <ion-select-option  *ngFor="let item of peapleInfo.cityList" [value]="item">{{item}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+</ion-list>
+获取信息11
+<ion-button (click)="getInfo()">
+  获取信息
+</ion-button>
+
+{{peapleInfo|json}}
+
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-button >
+      <ion-icon slot="icon-only" name="add"></ion-icon>
+    </ion-button>
+    <ion-title>底部导航</ion-title>
+  </ion-toolbar>
+</ion-footer>

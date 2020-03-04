@@ -1,0 +1,16 @@
+.card-box {
+  background: rgba(255, 255, 255, 1);
+  //   box-shadow: 0px 0px 16px 0px rgba(115, 106, 236, 0.1);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  border-radius: 14px;
+}
+.item-detail-icon {
+  display: none !important;
+}
+.icon-inner,
+svg {
+  display: none !important;
+}
+.header-ios ion-toolbar:last-child {
+  --border-color: #eeeeee;
+}

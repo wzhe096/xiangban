@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title style="text-align: center;">应邀</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-list lines="none">
+      <ion-list-header class="bottom-line fz1 bold color-black">
+        <ion-label>看电影</ion-label>
+      </ion-list-header>
+      <ion-item>
+        <ion-label class="fz1 color-black">显示发布邀约时的地点</ion-label>
+      </ion-item>
+      <ion-item class="top-line">
+        <ion-label class="fz1 color-black">显示发布邀约时的时间</ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+  <ion-card>
+    <ion-list lines="none">
+      <ion-list-header class="bottom-line fz1 bold color-black">
+        <ion-label>选择支付方式</ion-label>
+      </ion-list-header>
+      <ion-radio-group name="auto" value="payType">
+        <ion-item>
+          <ion-label class="fz1 color-black">支付宝</ion-label>
+          <ion-radio value="alipay"></ion-radio>
+        </ion-item>
+        <ion-item class="top-line">
+          <ion-label class="fz1 color-black">微信</ion-label>
+          <ion-radio value="wechat"></ion-radio>
+        </ion-item>
+        <ion-item class="top-line">
+          <ion-label class="fz1 color-black">银联</ion-label>
+          <ion-radio value="unionpay"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </ion-list>
+    <ion-item lines="none" class="top-line">
+      <ion-label class="bold color-black fz1">支付诚意金：￥100.00</ion-label>
+      <ion-button shape="round" (click)="jumpPay()" style="--background:rgba(238, 168, 16);min-height: 2.5rem;">
+        <span style="padding:1rem;">确认支付</span>
+      </ion-button>
+    </ion-item>
+  </ion-card>
+
+</ion-content>

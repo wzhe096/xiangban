@@ -1,0 +1,54 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title style="text-align: center;position: relative;left: 25px">匿名举报</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="onClick()">
+        <!-- <ion-icon slot="start" name="add"></ion-icon> -->
+        提交
+      </ion-button>
+    
+    </ion-buttons>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+<div style="font-family: PingFang-SC-Regular;font-size: 8pt;color: #999999;height: 10pt;font-weight: revert;padding: 0px 20px 0px 20px;">
+  如果你在24小时内支付过该用户通讯查看的费用，经查实，系统稍后会退回所收费用。
+</div>
+</ion-header>
+
+<ion-content>
+<ion-card>
+
+
+      <ion-item-divider >
+        <ion-label class="title">举报原因</ion-label>
+      </ion-item-divider>
+      <ion-item *ngFor="let item of peapleInfo.checkBoxList" class="item">
+        <ion-label>{{item.val}}</ion-label>
+        <ion-checkbox slot="end" [(ngModel)]="item.isChecked"></ion-checkbox>
+      </ion-item>
+</ion-card>
+    <ion-card>
+        <ion-card-header class="title">
+            请提供相关截图，以便查实
+        </ion-card-header>
+        <ion-card-content>
+            <div class="div_imgall">
+                <input type="file" class="input_flie" ref="file">
+                <div class="div_shuline">点击上传</div>
+<!--                <div class="div_hengline"></div>-->
+            </div>
+        </ion-card-content>
+    </ion-card>
+    <ion-card>
+        <ion-card-header class="title">
+            请提供相关截图，以便查实
+        </ion-card-header>
+        <ion-card-content>
+            <ion-textarea  placeholder="Enter any notes here..."></ion-textarea>
+        </ion-card-content>
+    </ion-card>
+</ion-content>
+

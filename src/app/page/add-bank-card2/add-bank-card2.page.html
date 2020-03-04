@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title >填写银行卡及身份信息</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<span style="margin-left: 20px;font-size: small;color: #999999;">请选择银行卡类型</span>
+<ion-card style="margin-top: 2%;">
+  <ion-list>
+    <ion-item style="font-size: 10pt;">
+      <ion-label>银行</ion-label>
+      <ion-select multiple="false" placeholder="选择银行" >
+        <ion-select-option  *ngFor="let item of bankList" [value]="item">{{item}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item style="font-size: 10pt;">
+      <ion-label>卡类型</ion-label>
+      <ion-select multiple="false" placeholder="选择卡类型" >
+        <ion-select-option  *ngFor="let item of bankTypeList" [value]="item">{{item}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+</ion-card>
+<span style="margin-left: 20px;font-size: small;color: #999999;">请填写个人信息</span>
+<ion-card style="margin-top: 2%;">
+  <ion-list>
+    <ion-item style="font-size: 10pt;">
+      <ion-label>地区</ion-label>
+      <ion-input type="text" placeholder="请输入预留电话"></ion-input>
+    </ion-item>
+    <ion-item style="font-size: 10pt;">
+      <ion-label>手机卡</ion-label>
+      <ion-input type="text" placeholder="请输入银行预留电话号"></ion-input>
+    </ion-item>
+  </ion-list>
+</ion-card>
+<!-- <ion-radio-group name="auto" value="tesla" >
+<ion-radio value="tesla" slot="start" style="width: 10px;height: 10px;color: #6C95E1;margin-left: 10px;"></ion-radio>
+<ion-label style="font-size: small;color: #6C95E1;">用户协议</ion-label>
+</ion-radio-group> -->
+<ion-item lines="none" style="margin-top: -7%;font-size: 10px;color: #6C95E1;">
+  <ion-label>用户协议</ion-label>
+  <ion-checkbox slot="start" size="small"></ion-checkbox>
+</ion-item>
+<ion-row>
+  <ion-col size="12" style="text-align: center;margin-top: 20%;">
+    <ion-button (click)="onClick()" shape="round" style="--background: #8BA0F1;color: #FFFFFF;width: 90%;">
+      登录
+       </ion-button>
+  </ion-col>
+</ion-row>
+</ion-content>

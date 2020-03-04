@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title style="text-align: center;">验证手机号</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-list >
+  <ion-item style="text-align: center;height: 40px;">
+    <ion-label>接收验证码：18046533221</ion-label>
+  </ion-item>
+  <ion-item style="text-align: center;height: 40px;font-size: small;color: #999999;">
+    <ion-label>绑定银行卡需要短信验证</ion-label>
+  </ion-item>
+</ion-list>
+<ion-list lines=none>
+ 
+  <ion-item>
+    <ion-label>验证码</ion-label>
+    <ion-input type="text" placeholder="填写验证码"></ion-input>
+    <ion-button (click)="onClick()" expand="block" fill="clear" shape="round">
+      获取验证码
+    </ion-button>
+  </ion-item>
+  <ion-item style="text-align: right;color: #6C95E1;font-size: small;">
+    <ion-label >收不到验证码？</ion-label>
+  </ion-item>
+</ion-list>
+<ion-row>
+  <ion-col size="12" style="text-align: center;margin-top: 5%;">
+    <ion-button (click)="onClick()" shape="round" style="--background: #8BA0F1;color: #FFFFFF;width: 90%;">
+      下一步
+       </ion-button>
+  </ion-col>
+</ion-row>
+</ion-content>

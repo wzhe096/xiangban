@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>datetime</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-list >
+  <ion-item>
+    <ion-label>日期</ion-label>
+    <ion-datetime   display-format="YYYY-MM-DD" picker-format="YYYY MM DD" [(ngModel)]="datetime" 
+    (ionChange)="dateChange($event)" [pickerOptions]="customPickerOptions"></ion-datetime>
+  </ion-item>
+</ion-list>
+{{datetime}}
+</ion-content>

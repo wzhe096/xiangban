@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab1" ></ion-back-button>
+    </ion-buttons>
+    <ion-title>轮播图</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-slides [options]="slideOpts">
+  <ion-slide>
+   <img src="assets\img\1.jpg" alt="">
+  </ion-slide>
+  <ion-slide>
+    <img src="assets\img\2.jpg" alt="">
+   </ion-slide>
+   <ion-slide>
+    <img src="assets\img\3.jpg" alt="">
+   </ion-slide>
+</ion-slides>
+<br>
+<ion-slides #slide2>
+  <ion-slide>
+   <img src="assets\img\1.jpg" alt="">
+  </ion-slide>
+  <ion-slide>
+    <img src="assets\img\2.jpg" alt="">
+   </ion-slide>
+   <ion-slide>
+    <img src="assets\img\3.jpg" alt="">
+   </ion-slide>
+</ion-slides>
+
+<ion-button (click)="getNext()">
+  获取下张图
+</ion-button>
+</ion-content>

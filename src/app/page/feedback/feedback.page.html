@@ -1,0 +1,15 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button ></ion-back-button>
+        </ion-buttons>
+        <ion-title text-center>反馈意见</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-card>
+        <ion-textarea placeholder="请在这里留下你宝贵的意见或建议..." style="height: 177px"></ion-textarea>
+    </ion-card>
+    <ion-button (click)="submit()" style="margin-left:calc(5%);width: 90%;margin-top: 50px;">提交</ion-button>
+</ion-content>
