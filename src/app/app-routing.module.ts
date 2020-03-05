@@ -263,7 +263,11 @@ const routes: Routes = [
   {
     path: 'modify-password',
     loadChildren: () => import('./page/modify-password/modify-password.module').then(m => m.ModifyPasswordPageModule)
+  },  {
+    path: 'photo-album',
+    loadChildren: () => import('./photo-album/photo-album.module').then( m => m.PhotoAlbumPageModule)
   },
+
 
 
 

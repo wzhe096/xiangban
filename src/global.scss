@@ -165,3 +165,9 @@
   -webkit-box-orient: vertical;
   line-height: 1.5;
 }
+.picker-below-highlight.sc-ion-picker-ios {
+  border-top: 1px solid #eeeeee;
+}
+.picker-above-highlight.sc-ion-picker-ios {
+  border-bottom: 1px solid #eeeeee;
+}

@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from "@angular/router";
-import {AuthService} from "../../services/auth.service";
-import {UserService} from "../../services/user.service";
-import {Helper} from "../../providers/Helper";
-import {Storage} from "../../providers/Storage";
-import {GlobalData} from "../../providers/GlobalData";
-import {HttpRequestService} from "../../service/http-request.service";
-import {RequestUrlService} from "../../service/request-url.service";
-import {StorageService} from "../../service/storage.service";
-import {ToolService} from "../../service/tool.service";
+import { Router } from "@angular/router";
+import { AuthService } from "../../services/auth.service";
+import { UserService } from "../../services/user.service";
+import { Helper } from "../../providers/Helper";
+import { Storage } from "../../providers/Storage";
+import { GlobalData } from "../../providers/GlobalData";
+import { HttpRequestService } from "../../service/http-request.service";
+import { RequestUrlService } from "../../service/request-url.service";
+import { StorageService } from "../../service/storage.service";
+import { ToolService } from "../../service/tool.service";
+import { PickerController } from '@ionic/angular';
 
 @Component({
   selector: 'app-modify-password',
@@ -24,22 +25,71 @@ export class ModifyPasswordPage implements OnInit {
   };
 
   verificationCode = '';
-
   showVerification = true;
   VerificationTime = 60;
+  phonePrefixList = [
+    [
+      '+86',
+      '+25',
+      '+30'
+    ]
+  ];
+  phonePrefix = '+86';
   constructor(private router: Router,
-              public authService: AuthService,
-              public userService: UserService,
-              private httpServer: HttpRequestService,
-              private requestUrl: RequestUrlService,
-              private storageServe: StorageService,
-              private tool: ToolService,
-              public helper: Helper,
+    public authService: AuthService,
+    public userService: UserService,
+    private httpServer: HttpRequestService,
+    private requestUrl: RequestUrlService,
+    private storageServe: StorageService,
+    private tool: ToolService,
+    public helper: Helper,
+    private pickercontroller: PickerController
   ) { }
 
   ngOnInit() {
   }
+  async openPicker(numColumns = 1, numOptions = 5, multiColumnOptions) {
+    const picker = await this.pickercontroller.create({
+      columns: this.getColumns(numColumns, numOptions, multiColumnOptions),
+      buttons: [
+        {
+          text: '取消',
+          role: 'cancel'
+        },
+        {
+          text: '确定',
+          handler: value => {
+            // console.log(`Got Value ${value}`);
+            console.log(JSON.stringify(value))
+            this.phonePrefix = value["col-0"].text;
+          }
+        }
+      ]
+    });
+    await picker.present();
+  }
+  getColumns(numColumns, numOptions, columnOptions) {
+    let columns = [];
+    for (let i = 0; i < numColumns; i++) {
+      columns.push({
+        name: `col-${i}`,
+        options: this.getColumnOptions(i, numOptions, columnOptions)
+      });
+    }
+    return columns;
+  }
 
+  getColumnOptions(columnIndex, numOptions, columnOptions) {
+    let options = [];
+    for (let i = 0; i < numOptions; i++) {
+      options.push({
+        text: columnOptions[columnIndex][i % numOptions],
+        value: i
+      })
+    }
+    return options;
+  }
+  //发送验证码
   messageVerification() {
     if (!this.checkUserName()) {
       return;
@@ -120,7 +170,7 @@ export class ModifyPasswordPage implements OnInit {
     }
     this.httpServer.request({
       method: 'post',
-      url: this.requestUrl.modifyPasswordUrl + '/' + this.user.username,
+      url: this.requestUrl.modifyPasswordUrl + '/' + this.verificationCode,
       data: this.user,
     }).then(response => {
       if (response.status === 0) {

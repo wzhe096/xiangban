@@ -1,0 +1,79 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>相册</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- <ion-row class="flex-box" style="justify-content: flex-start;">
+
+    <ion-col col-3 class="flex-box" *ngFor="let item of product.uploadimg;let i = index;">
+      <i class="ico_close_circle fs1-5 color-grey" style="position: absolute;top: 0;right: 0;z-index: 1000;"
+        (click)="deleteImg(product,i)"></i>
+      <div class="img-square">
+        <img-lazy-load src="{{'data:image/jpeg;base64,'+item.imgStr}}"></img-lazy-load>
+      </div>
+    </ion-col>
+    <ion-col col-3 class="flex-box" *ngIf="product.uploadimg.length<=3">
+      <div class="flex-box upload-box img-square" (click)="chooseImg(product)">
+        <div class="flex-box"> <i class="ico_camera ifs3"></i></div>
+      </div>
+    </ion-col>
+  </ion-row> -->
+  <ion-card>
+    <ion-row>
+      <ion-item class="bold fz1" lines="none" style="width: 100%;">
+        <ion-label>相册</ion-label>
+      </ion-item>
+    </ion-row>
+    <ion-row style="width: 100%;padding: 1rem;" class="top-line">
+      <ion-col size="4" class="flex-box" *ngFor="let item of uploadimg;let i = index;">
+        <i class="iconfont icon-shanchu fz1"
+          style="color: red;position: absolute;top: 0;right: 0;z-index: 1000;" (click)="deleteImg(uploadimg,i)"></i>
+        <div class="img-square">
+          <img src="{{'data:image/jpeg;base64,'+item}}" *ngIf="item.indexOf('http')<0">
+          <img src="{{item}}" *ngIf="item.indexOf('http')>=0">
+        </div>
+      </ion-col>
+      <ion-col size="4" *ngIf="uploadimg.length<=5">
+        <div class="flex-box photo-box img-square" (click)="chooseImg(uploadimg)">
+          <div class="flex-box"> <i class="iconfont icon-shiliangzhinengduixiang29 fz2" style="color:#809DD9;"></i>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+  <ion-card>
+    <ion-row>
+      <ion-item class="bold fz1" lines="none" style="width: 100%;">
+        <ion-label>视频 <span class="color-grey fz0-8">只可上传一个</span></ion-label>
+      </ion-item>
+    </ion-row>
+    <ion-row style="width: 100%;padding: 1rem;" class="top-line">
+      <ion-col size="4" class="flex-box" *ngIf="uploadvideo!=''">
+        <i class="iconfont icon-shanchu fz1"
+          style="color: red;position: absolute;top: 0;right: 0;z-index: 1000;" (click)="deleteVideo()"></i>
+        <div class="img-square">
+          <!-- <ion-img src="{{'data:image/jpeg;base64,'+item}}"></ion-img> -->
+          <!-- <img src="{{uploadvideo}}"> -->
+          <audio src="{{uploadvideo}}" controls="controls"></audio>
+        </div>
+      </ion-col>
+      <ion-col size="4" *ngIf="uploadvideo==''">
+        <div class="flex-box photo-box img-square" (click)="chooseVideo()">
+          <div class="flex-box"> <i class="iconfont icon-shiliangzhinengduixiang15 fz2" style="color:#809DD9;"></i>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+
+  <ion-row class="flex-box" style="margin-top: 3rem;">
+    <ion-button (click)="submit()" style="--background: #8CC7FF;width: 33vw;">
+      提交
+    </ion-button>
+  </ion-row>
+</ion-content>

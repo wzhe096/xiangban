@@ -122,4 +122,8 @@ export class SigninPage implements OnInit {
         event.stopPropagation();
         window.open("http://winnerray.com/userAgree.html", "_blank");
     }
+    //去注册
+    goRegister() {
+        this.router.navigate(['register']);
+    }
 }

@@ -8,10 +8,10 @@ export class RequestUrlService {
   constructor() { }
   // commentBaseUrl: string = "http://111.229.198.81";
   // imageBaseUrl:string ="http://111.229.198.81:81/"
-  commentBaseUrl: string = "http://192.168.3.23:80";
-  imageBaseUrl: string = "http://192.168.3.23:80/"
-  // commentBaseUrl: string = "https://api.tgp125.cn";
-  // imageBaseUrl: string = "https://api.tgp125.cn/";
+  // commentBaseUrl: string = "http://192.168.3.35:80";
+  // imageBaseUrl: string = "http://192.168.3.23:80/"
+  commentBaseUrl: string = "https://api.tgp125.cn";
+  imageBaseUrl: string = "https://api.tgp125.cn/";
   //更新app
   updateAppUrl = "/sj/getLastVersion"
   //获取appKey
@@ -28,6 +28,8 @@ export class RequestUrlService {
   removeBlackUrl = "/sj/removeBlack"
   //上传图片
   uploadbase64ImgUrl = "/sj/fastdfs/upload/image/base64"
+  //上传图片组
+  uploadbase64ImgLsitUrl = "/sj/fastdfs/upload/image/base64L"
   //上传文件
   uploadFileUrl = "/sj/fastdfs/upload/file/sample"
   //支付

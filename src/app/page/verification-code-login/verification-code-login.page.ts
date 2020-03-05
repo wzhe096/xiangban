@@ -144,6 +144,7 @@ export class VerificationCodeLoginPage implements OnInit {
     }
     return true;
   }
+  //验证码登录/注册
   verificationCodeLogin() {
     if (!this.checkUserName()) {
       return;
@@ -151,7 +152,7 @@ export class VerificationCodeLoginPage implements OnInit {
     if (!this.checkVerificationCode()) {
       return;
     }
-    this.tool.showLoading('登陆中');
+    this.tool.showLoading('登录中...');
     this.httpServer.request({
       method: 'post',
       url: this.requestUrl.verificationCodeLoginUrl + '/' + this.verificationCode,
@@ -159,22 +160,32 @@ export class VerificationCodeLoginPage implements OnInit {
     }).then(res => {
       this.tool.hideLoading();
       if (res.status === 0) {
-        localStorage.setItem('token', res.data);
-        this.httpServer.request({
-          method: 'get',
-          url: this.requestUrl.userInfoUrl + '/' + this.user.username,
-        }).then(response => {
-          if (response.status === 0) {
-            this.helper.loginSuccessHandle(response.data);
-            this.events.publish('new:login', 'ok', Date.now());
-            // this.router.navigate(['/tabs/tab1']);
-            this.nav.navigateRoot(['/tabs']);
-          } else {
-            this.tool.showToast(res.message);
-          }
-        }).catch(result => {
-          console.log('获取owner信息错误');
-        });
+        if (res.data.type) {
+          //是注册
+          localStorage.setItem('token', res.data.token);
+          this.router.navigate(['/information-completion'], {
+            queryParams: {
+              username: this.user.username,
+            }
+          });
+        } else {
+          localStorage.setItem('token', res.data);
+          this.httpServer.request({
+            method: 'get',
+            url: this.requestUrl.userInfoUrl + '/' + this.user.username,
+          }).then(response => {
+            if (response.status === 0) {
+              this.helper.loginSuccessHandle(response.data);
+              // this.router.navigate(['/tabs/tab1']);
+              this.nav.navigateRoot(['/tabs']);
+            } else {
+              this.tool.showToast(res.message);
+            }
+          }).catch(result => {
+            console.log('获取owner信息错误');
+          });
+        }
+
       } else {
         this.tool.showToast(res.message);
       }

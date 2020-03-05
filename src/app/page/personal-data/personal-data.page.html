@@ -8,7 +8,7 @@
 </ion-header>
 <ion-content>
   <ion-card>
-    <ion-item style="padding: 0.3rem 0rem;" lines="none" detail>
+    <ion-item style="padding: 0.3rem 0rem;" lines="none" detail (click)="chooseImg()">
       <ion-avatar slot="start">
         <img src="{{user.picId}}">
       </ion-avatar>
@@ -26,13 +26,15 @@
   </ion-card>
   <ion-card>
     <ion-row>
-      <ion-item class="bold fz1" detail lines="none" style="width: 100%;">
+      <ion-item class="bold fz1" detail lines="none" style="width: 100%;" (click)="jumpPhotoAlbum()">
         相册
       </ion-item>
     </ion-row>
-    <ion-row>
-      <ion-col size="4" *ngFor="let item of user.photos" style="margin-bottom: 10px ;">
-        <img [src]="item" style="width: 100%;height: 100px;">
+    <ion-row style="width: 100%;padding: 0.5rem;" class="top-line">
+      <ion-col size="4" class="flex-box" *ngFor="let item of user.images">
+        <div class="img-square">
+          <img src="{{requestUrl.imageBaseUrl+item}}">
+        </div>
       </ion-col>
     </ion-row>
     <!-- <ion-thumbnail slot="start" *ngFor="let item of user.photos">
@@ -42,44 +44,51 @@
   <ion-card>
     <ion-list lines="none">
       <ion-list-header class="bold fz1">资料</ion-list-header>
-      <ion-item class="top-line" detail>
+      <ion-item class="top-line">
         <ion-label>昵称</ion-label>
-        <span class="fz0-8 color-grey" style="font-weight: lighter;">{{user.nickName}}</span>
+        <ion-input class="fz0-8 color-grey" style="text-align: right;font-weight: lighter;" placeholder="请填写昵称"
+          [(ngModel)]="user.nickName" type="text"></ion-input>
       </ion-item>
       <ion-item class="top-line">
         <ion-label>ID</ion-label>
-        <span class="fz0-8 color-grey" style="font-weight: lighter;">{{user.identityId}}</span>
+        <span class="fz0-8 color-grey" style="font-weight: lighter;" slot="end">{{user.identityId}}</span>
       </ion-item>
       <ion-item class="top-line">
         <ion-label>性别</ion-label>
-        <span class="fz0-8 color-grey" style="font-weight: lighter;" *ngIf="user.sex==1">男</span>
-        <span class="fz0-8 color-grey" style="font-weight: lighter;" *ngIf="user.sex==2">女</span>
-        <span class="fz0-8 color-grey" style="font-weight: lighter;" *ngIf="user.sex==3">其他</span>
+        <!-- <ion-input class="fz0-8 color-grey" style="text-align: right;font-weight: lighter;" placeholder="请填写年龄"
+          [(ngModel)]="user.age" type="text" readonly="true"></ion-input> -->
+        <span class="fz0-8 color-grey" style="font-weight: lighter;" *ngIf="user.sex==1" slot="end">男</span>
+        <span class="fz0-8 color-grey" style="font-weight: lighter;" *ngIf="user.sex==2" slot="end">女</span>
+        <span class="fz0-8 color-grey" style="font-weight: lighter;" *ngIf="user.sex==3" slot="end">其他</span>
       </ion-item>
-      <ion-item class="top-line" detail>
+      <ion-item class="top-line">
         <ion-label>年龄</ion-label>
-        <span class="fz0-8 color-grey" style="font-weight: lighter;">{{user.age}}</span>
+        <ion-input class="fz0-8 color-grey" style="text-align: right;font-weight: lighter;" placeholder="请填写年龄"
+          [(ngModel)]="user.age" type="number"></ion-input>
       </ion-item>
-      <ion-item class="top-line" detail>
+      <ion-item class="top-line">
         <ion-label>城市</ion-label>
-        <span class="fz0-8 color-grey" style="font-weight: lighter;">{{user.city}}</span>
+        <ion-input class="fz0-8 color-grey" style="text-align: right;font-weight: lighter;" placeholder="请填写地址"
+          [(ngModel)]="user.address" type="text"></ion-input>
       </ion-item>
       <ion-item class="top-line" (click)="showAppearance()" detail>
         <ion-label>外貌</ion-label>
         <span class="fz0-8 color-grey" style="font-weight: lighter;">{{user.appearance}}</span>
       </ion-item>
-      <ion-item class="top-line" detail>
+      <ion-item class="top-line">
         <ion-label>通讯</ion-label>
-        <span class="fz0-8 color-grey" style="font-weight: lighter;"> {{user.mobile}}</span>
+        <!-- <span class="fz0-8 color-grey" style="font-weight: lighter;"> {{user.mobile}}</span> -->
+        <ion-input class="fz0-8 color-grey" style="text-align: right;font-weight: lighter;" placeholder="请填写联系方式"
+          [(ngModel)]="user.mobile" type="text"></ion-input>
       </ion-item>
-      <ion-item class="top-line" detail>
+      <ion-item class="top-line" detail (click)="openPicker(1,money[0].length,money)">
         <ion-label>收入</ion-label>
         <span class="fz0-8 color-grey" style="font-weight: lighter;">{{user.income}}</span>
       </ion-item>
     </ion-list>
   </ion-card>
 
-  <ion-row class="flex-box" style="margin-top: 3rem;">
+  <ion-row class="flex-box" style="margin-top: 3rem;margin-bottom: 3rem;">
     <ion-button (click)="submit()" style="--background: #8CC7FF;width: 33vw;">
       保存
     </ion-button>

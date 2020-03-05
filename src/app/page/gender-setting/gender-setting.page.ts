@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-gender-setting',
@@ -12,7 +12,8 @@ export class GenderSettingPage implements OnInit {
 
   ngOnInit() {
   }
-  genderSetting(value){
+  genderSetting(value) {
+    localStorage.setItem("sex", value);
     this.router.navigate(['register']);
   }
 }

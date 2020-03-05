@@ -15,16 +15,26 @@
           <ion-img style="width: 15px;height: 15px;" src="assets\icon\昵称.png"></ion-img>
         </ion-button>
         <ion-label>昵称</ion-label>
-        <ion-input [(ngModel)]="user.nickName" style="text-align: right;font-size: 10pt;font-weight: lighter;"
+        <ion-input [(ngModel)]="user.nickName" class="fz0-8" style="text-align: right;font-weight: lighter;"
           placeholder="请输入"></ion-input>
       </ion-item>
-      <ion-item lines="none" class="top-line" tappable>
+      <!-- <ion-item lines="none" class="top-line" tappable>
         <ion-button slot="start" fill="clear">
           <ion-img style="width: 15px;height: 15px;" src="assets\icon\年龄.png"></ion-img>
         </ion-button>
         <ion-label>生日</ion-label>
         <ion-datetime class="fz0-8" display-format="YYYY-MM-DD" picker-format="YYYY MM DD" [(ngModel)]="datetime"
           [pickerOptions]="customPickerOptions" placeholder="请选择日期"></ion-datetime>
+      </ion-item> -->
+      <ion-item lines="none" class="top-line" tappable>
+        <ion-button slot="start" fill="clear">
+          <ion-img style="width: 15px;height: 15px;" src="assets\icon\年龄.png"></ion-img>
+        </ion-button>
+        <ion-label>年龄</ion-label>
+        <ion-input class="fz0-8" style="text-align: right;font-weight: lighter;" placeholder="请填写年龄"
+          [(ngModel)]="user.age" type="number"></ion-input>
+        <!-- <ion-input style="text-align: right;font-size: 10pt;font-weight: lighter;" placeholder="选择位置"
+          [(ngModel)]="user.address" (click)="openPicker(2,5,multiColumnOptions)"></ion-input> -->
       </ion-item>
       <ion-item lines="none" class="top-line" tappable>
         <ion-button slot="start" fill="clear">

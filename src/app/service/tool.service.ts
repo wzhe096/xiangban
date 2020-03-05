@@ -49,7 +49,7 @@ export class ToolService {
     if (message) {
       const toast = await this.toastCtrl.create({
         message: message,
-        cssClass:"",
+        cssClass: "",
         duration: 2000,
       });
       toast.present();
@@ -126,7 +126,7 @@ export class ToolService {
   };
 
   /**
-   * 通过图库获取照片
+   * 通过图库获取视频
    * @param options
    * @return {Promise<T>}
    */
@@ -176,6 +176,61 @@ export class ToolService {
             ? console.log("取消拍照")
             : console.log("获取失败");
         });
+    });
+  };
+  /**
+   * 通过图库获取照片
+   * @param options
+   * @return {Promise<T>}
+   */
+  getVideoByPhotoLibrary = (options = {}) => {
+    return new Promise(resolve => {
+      this.getVideo(
+        Object.assign(
+          {
+            sourceType: this.camera.PictureSourceType.PHOTOLIBRARY
+          },
+          options
+        )
+      )
+        .then(videoBase64 => {
+          console.log("相册返回数据：" + videoBase64)
+          resolve(videoBase64);
+        })
+        .catch(err => {
+          String(err).indexOf("cancel") != -1
+            ? console.log("取消选择视频")
+            : console.log("获取失败");
+        });
+    });
+  };
+  /**
+   * 使用cordova-plugin-camera获取照片的base64
+   * @param options
+   * @return {Promise<T>}
+   */
+  getVideo = options => {
+    return new Promise((resolve, reject) => {
+      this.camera
+        .getPicture(
+          Object.assign(
+            {
+              destinationType: this.camera.DestinationType.FILE_URI, //返回值格式,FILE_URI:图片路径
+              mediaType: this.camera.MediaType.VIDEO,
+              quality: 100,
+            },
+            options
+          )
+        )
+        .then(
+          videoData => {
+            resolve(videoData);
+          },
+          err => {
+            console.log(err);
+            err == 20 ? this.showToast("没有打开手机权限") : reject(err);
+          }
+        );
     });
   };
 }

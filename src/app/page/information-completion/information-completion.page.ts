@@ -43,8 +43,10 @@ export class InformationCompletionPage implements OnInit {
     picId: 'assets/icon/favicon.png',
     nickName: '',
     birthDay: '',
+    age: "",
     address: '',
     income: '',
+    sex: parseInt(localStorage.getItem("sex")),
     profession: ''
   };
   public datetime = "";
@@ -242,6 +244,8 @@ export class InformationCompletionPage implements OnInit {
           picId: this.user.picId,
           nickName: this.user.nickName,
           birthDay: this.user.birthDay,
+          age: this.user.age,
+          sex: parseInt(localStorage.getItem("sex")),
           address: this.user.address,
           income: this.user.income,
           profession: this.user.profession,
@@ -309,34 +313,18 @@ export class InformationCompletionPage implements OnInit {
     }
   }
   signIn() {
-    this.tool.showLoading('登录中...');
     this.httpServer.request({
-      method: 'post',
-      url: this.requestUrl.loginUrl,
-      data: this.user,
-    }).then(res => {
-      this.tool.hideLoading();
-      if (res.status === 0) {
-        localStorage.setItem('token', res.data);
-        this.httpServer.request({
-          method: 'get',
-          url: this.requestUrl.userInfoUrl + '/' + this.username,
-        }).then(response => {
-          if (response.status === 0) {
-            this.helper.loginSuccessHandle(response.data);
-            this.nav.navigateRoot(['/tabs']);
-          } else {
-            this.tool.showToast(res.message);
-          }
-        }).catch(result => {
-          console.log('获取owner信息错误');
-        });
+      method: 'get',
+      url: this.requestUrl.userInfoUrl + '/' + this.username,
+    }).then(response => {
+      if (response.status === 0) {
+        this.helper.loginSuccessHandle(response.data);
+        this.nav.navigateRoot(['/tabs']);
       } else {
-        this.tool.showToast(res.message);
+        this.tool.showToast(response.message);
       }
     }).catch(result => {
-      this.tool.hideLoading();
-      this.tool.showToast('登录失败，请稍后重试');
+      console.log('获取owner信息错误');
     });
   }
 }

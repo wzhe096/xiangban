@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController, NavController } from '@ionic/angular';
+import { AlertController, NavController, ActionSheetController, PickerController } from '@ionic/angular';
 import { ToastController } from '@ionic/angular';
 import { HttpRequestService } from 'src/app/service/http-request.service';
 import { RequestUrlService } from 'src/app/service/request-url.service';
@@ -15,25 +15,11 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 export class PersonalDataPage implements OnInit {
 
   user: any = {};
-  userinfo: any = {
-    nickName: "王者1",
-    mobile: '18292837296',
-    age: 27,
-    city: '西安市',
-    income: "100000",
-    // images: ['assets/img/1.jpg', 'assets/img/1.jpg', 'assets/img/3.jpg']
-  };
-  peapleInfo = {
-    distance: '0.23km',
-    age: '23',
-    gender: '女',
-    job: '学生'
-  };
   public isShow = false;
   public paySuccessShow = false;
-
   public reportSuccessShow = true;
   public showList;
+  money = [['6000以下', '6000~8000', '8000~10000', '10000~15000', "15000~20000", "20000以上"]]
   constructor(
     public alertController: AlertController,
     public toastController: ToastController,
@@ -42,12 +28,53 @@ export class PersonalDataPage implements OnInit {
     private tool: ToolService,
     private router: Router,
     private nav: NavController,
-    private actionSheetCtrl: AlertController) {
+    private actionSheetCtrl: ActionSheetController,
+    private pickercontroller: PickerController) {
     this.showList = false;
   }
+  async openPicker(numColumns = 1, numOptions = 5, multiColumnOptions) {
+    const picker = await this.pickercontroller.create({
+      columns: this.getColumns(numColumns, numOptions, multiColumnOptions),
+      buttons: [
+        {
+          text: '取消',
+          role: 'cancel'
+        },
+        {
+          text: '确定',
+          handler: (value) => {
+            console.log(value);
+            console.log(value['col-0'].text);
+            this.user.income = value['col-0'].text
+          }
+        }
+      ]
+    });
+    await picker.present();
+  }
 
+  getColumns(numColumns, numOptions, columnOptions) {
+    let columns = [];
+    for (let i = 0; i < numColumns; i++) {
+      columns.push({
+        name: `col-${i}`,
+        options: this.getColumnOptions(i, numOptions, columnOptions)
+      });
+    }
+    return columns;
+  }
+
+  getColumnOptions(columnIndex, numOptions, columnOptions) {
+    let options = [];
+    for (let i = 0; i < numOptions; i++) {
+      options.push({
+        text: columnOptions[columnIndex][i % numOptions],
+        value: i
+      })
+    }
+    return options;
+  }
   ngOnInit() {
-    // this.queryUserByUserName();
     this.queryUserInfo();
   }
   //获取个人资料
@@ -69,12 +96,24 @@ export class PersonalDataPage implements OnInit {
     });
   }
   //保存
-  submit() {
+  async submit() {
     this.tool.showLoading('保存中');
-    this.httpServer.request({
+    if (this.user.picId != "") {
+      this.user.picId = await this.upload(this.user.picId);
+    } else {
+      this.user.picId = "";
+    }
+    await this.httpServer.request({
       method: 'post',
       url: this.requestUrl.changeUserInfoUrl,
-      data: this.userinfo
+      data: {
+        address: this.user.address,
+        age: this.user.age,
+        income: this.user.income,
+        mobile: this.user.mobile,
+        nickName: this.user.nickName,
+        picId: this.user.picId,
+      }
     }).then(result => {
       this.tool.hideLoading();
       if (result.status === 0) {
@@ -135,22 +174,33 @@ export class PersonalDataPage implements OnInit {
     });
     await actionSheet.present();
   }
-  queryUserByUserName() {
-    const user = {
-      userName: '15332217572',
-      nickName: '流水',
-      mobile: '15332217572',
-      level: '4',
-      sex: '1',
-      age: '23',
-      city: '西安',
-      profession: 'it民工',
-      income: '1800',
-      photos: ['assets\\img\\1.jpg', 'assets\\img\\1.jpg', 'assets\\img\\3.jpg']
-    };
-    this.user = user;
+  //上传图片
+  async upload(imageInfo) {
+    // this.tool.showLoading();
+    let uploadImg = "";
+    if (imageInfo.length > 0) {
+      await this.httpServer.request({
+        method: 'POST',
+        url: this.requestUrl.uploadbase64ImgLsitUrl,
+        data: {
+          baseStr: imageInfo
+        },
+      }).then(result => {
+        let uploadInfo = result.data;
+        if (result.status == "0") {
+          uploadImg = uploadInfo;
+          console.log(uploadImg);
+        } else {
+          this.tool.showToast(result.message);
+          // this.tool.hideLoading();
+        }
+      }).catch(result => {
+        //this.tool.showToast(result);
+        // this.tool.hideLoading();
+      });
+    }
+    return uploadImg;
   }
-
   presentPopover() {
     if (this.showList == true) {
       return this.showList = false;
@@ -204,6 +254,10 @@ export class PersonalDataPage implements OnInit {
 
   backdropclick(event) {
 
+  }
+  //跳转到相册
+  jumpPhotoAlbum() {
+    this.router.navigate(["/photo-album"]);
   }
 
 }
