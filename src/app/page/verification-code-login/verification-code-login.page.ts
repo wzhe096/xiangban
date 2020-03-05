@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from "@angular/router";
-import {AuthService} from "../../services/auth.service";
-import {UserService} from "../../services/user.service";
-import {HttpRequestService} from "../../service/http-request.service";
-import {RequestUrlService} from "../../service/request-url.service";
-import {StorageService} from "../../service/storage.service";
-import {ToolService} from "../../service/tool.service";
-import {Helper} from "../../providers/Helper";
-import {Storage} from "../../providers/Storage";
-import {Events} from "@ionic/angular";
+import { Router } from "@angular/router";
+import { AuthService } from "../../services/auth.service";
+import { UserService } from "../../services/user.service";
+import { HttpRequestService } from "../../service/http-request.service";
+import { RequestUrlService } from "../../service/request-url.service";
+import { StorageService } from "../../service/storage.service";
+import { ToolService } from "../../service/tool.service";
+import { Helper } from "../../providers/Helper";
+import { Storage } from "../../providers/Storage";
+import { Events, NavController, PickerController } from "@ionic/angular";
 
 @Component({
   selector: 'app-verification-code-login',
@@ -22,20 +22,70 @@ export class VerificationCodeLoginPage implements OnInit {
     password: ''
   };
   verificationCode = '';
-
+  phonePrefixList = [
+    [
+      '+86',
+      '+25',
+      '+30'
+    ]
+  ];
+  phonePrefix = '+86';
   showVerification = true;
   VerificationTime = 60;
   constructor(private router: Router,
-              public authService: AuthService,
-              public userService: UserService,
-              private httpServer: HttpRequestService,
-              private requestUrl: RequestUrlService,
-              private storageServe: StorageService,
-              public events: Events,
-              private tool: ToolService,
-              public helper: Helper) { }
+    public authService: AuthService,
+    public userService: UserService,
+    private httpServer: HttpRequestService,
+    private requestUrl: RequestUrlService,
+    private storageServe: StorageService,
+    public events: Events,
+    private tool: ToolService,
+    public helper: Helper,
+    private nav: NavController,
+    private pickercontroller: PickerController) { }
 
   ngOnInit() {
+  }
+  async openPicker(numColumns = 1, numOptions = 5, multiColumnOptions) {
+    const picker = await this.pickercontroller.create({
+      columns: this.getColumns(numColumns, numOptions, multiColumnOptions),
+      buttons: [
+        {
+          text: '取消',
+          role: 'cancel'
+        },
+        {
+          text: '确定',
+          handler: value => {
+            // console.log(`Got Value ${value}`);
+            console.log(JSON.stringify(value))
+            this.phonePrefix = value["col-0"].text;
+          }
+        }
+      ]
+    });
+    await picker.present();
+  }
+  getColumns(numColumns, numOptions, columnOptions) {
+    let columns = [];
+    for (let i = 0; i < numColumns; i++) {
+      columns.push({
+        name: `col-${i}`,
+        options: this.getColumnOptions(i, numOptions, columnOptions)
+      });
+    }
+    return columns;
+  }
+
+  getColumnOptions(columnIndex, numOptions, columnOptions) {
+    let options = [];
+    for (let i = 0; i < numOptions; i++) {
+      options.push({
+        text: columnOptions[columnIndex][i % numOptions],
+        value: i
+      })
+    }
+    return options;
   }
   messageVerification() {
     if (!this.checkUserName()) {
@@ -109,7 +159,7 @@ export class VerificationCodeLoginPage implements OnInit {
     }).then(res => {
       this.tool.hideLoading();
       if (res.status === 0) {
-        this.storageServe.write('token', res.data);
+        localStorage.setItem('token', res.data);
         this.httpServer.request({
           method: 'get',
           url: this.requestUrl.userInfoUrl + '/' + this.user.username,
@@ -117,7 +167,8 @@ export class VerificationCodeLoginPage implements OnInit {
           if (response.status === 0) {
             this.helper.loginSuccessHandle(response.data);
             this.events.publish('new:login', 'ok', Date.now());
-            this.router.navigate(['/tabs/tab1']);
+            // this.router.navigate(['/tabs/tab1']);
+            this.nav.navigateRoot(['/tabs']);
           } else {
             this.tool.showToast(res.message);
           }
@@ -131,5 +182,9 @@ export class VerificationCodeLoginPage implements OnInit {
       this.tool.hideLoading();
       this.tool.showToast('登录失败，请稍后重试');
     });
+  }
+  agreement() {
+    event.stopPropagation();
+    window.open("http://winnerray.com/userAgree.html", "_blank");
   }
 }

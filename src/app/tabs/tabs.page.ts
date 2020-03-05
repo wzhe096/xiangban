@@ -158,7 +158,7 @@ export class TabsPage {
                                 window.location.href = 'itms-services://?action=download-manifest&url=' + urls;
                             } else {
                                 console.log('开始下载Android代码----------------------------');
-                                this.tool.showLoading("下载中，请稍等。。。");
+                                this.tool.showLoading("下载中，请稍等...");
                                 // loading.present();
                                 const fileTransfer: FileTransferObject = this.transfer.create();
                                 // fileTransfer.onProgress(progressEvent => {

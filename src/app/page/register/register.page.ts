@@ -59,7 +59,7 @@ export class RegisterPage implements OnInit {
                     role: 'cancel'
                 },
                 {
-                    text: '確定',
+                    text: '确定',
                     handler: value => {
                         // console.log(`Got Value ${value}`);
                         console.log(JSON.stringify(value))

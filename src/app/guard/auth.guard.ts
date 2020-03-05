@@ -19,14 +19,14 @@ export class AuthGuard implements CanActivate {
     return this.checkLogin();
   }
   checkLogin(): boolean {
-    const lang = this.storageServe.read('lang');
+    const lang = localStorage.getItem('lang');
     if (!lang) {
       // this.router.navigate(['/langset']);
       this.nav.navigateRoot('langset');
       return false;
     } else {
       // 判断本地有没有token
-      const token = this.storageServe.read('token');
+      const token = localStorage.getItem('token');
       // 如果token有值，表示登录成功，继续跳转，否则跳转到首页
       if (token) {
         // this.events.publish('new:login', "ok", Date.now());

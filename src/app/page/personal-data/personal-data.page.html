@@ -1,197 +1,197 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button ></ion-back-button>
+      <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title >个人资料</ion-title>
-    
+    <ion-title>个人资料</ion-title>
   </ion-toolbar>
-  
 </ion-header>
-
 <ion-content>
-  
-  
-<ion-card>
-  
-
-
-  <ion-list>
-   
-    <ion-item lines="none" style="border-bottom: #eeeeee 1px solid;">
-     
-      <div style="height: 25px;">
-        {{'photo'|translate}}
-      </div>
-    </ion-item> 
-</ion-list>
- <ion-row>
-   <ion-col size="4" *ngFor="let item of user.photos" style="margin-bottom: 10px ;">
-    <img [src]="item" style="width: 100%;height: 100px;">
-   </ion-col>
- </ion-row>
-      <!-- <ion-thumbnail slot="start" *ngFor="let item of user.photos">
+  <ion-card>
+    <ion-item style="padding: 0.3rem 0rem;" lines="none" detail>
+      <ion-avatar slot="start">
+        <img src="{{user.picId}}">
+      </ion-avatar>
+      <ion-label class="flex-box" style="justify-content: space-between;">
+        <div class="fz1 color-black" style="font-weight: lighter;">{{user.nickName}}</div>
+      </ion-label>
+      <div class="fz0-8 color-grey" style="font-weight: lighter;" slot="end">点击更换头像</div>
+      <!-- <ion-label class="ion-no-padding">
+          <ion-row size="12" class="flex-box" style="justify-content: space-between;">
+            <span class="title-box fz1-1 ellipsis" style="max-width: 70%;">{{item.username}}</span>
+            <span class="fz1" style="color: #8BA0F1;text-align: center;" (click)="removeBlack(item)">移除黑名单</span>
+          </ion-row>
+        </ion-label> -->
+    </ion-item>
+  </ion-card>
+  <ion-card>
+    <ion-row>
+      <ion-item class="bold fz1" detail lines="none" style="width: 100%;">
+        相册
+      </ion-item>
+    </ion-row>
+    <ion-row>
+      <ion-col size="4" *ngFor="let item of user.photos" style="margin-bottom: 10px ;">
+        <img [src]="item" style="width: 100%;height: 100px;">
+      </ion-col>
+    </ion-row>
+    <!-- <ion-thumbnail slot="start" *ngFor="let item of user.photos">
         <ion-img [src]="item" style="width: 105px;height: 100px;"></ion-img>
       </ion-thumbnail> -->
-   
-</ion-card>
-<ion-card>
-  
-
-  <ion-list>
-    <ion-item>
-      <ion-label>资料</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>昵称</ion-label>
-      
-      <span style="font-weight: lighter;font-size: 10pt;">{{user.nickName}}</span>
-    </ion-item>
-    <ion-item>
-      <ion-label>ID</ion-label>
-      
-      <span style="font-weight: lighter;font-size: 10pt;">{{user.userName}}</span>
-    </ion-item>
-    <ion-item>
-      <ion-label>年龄</ion-label>
-      
-      <span style="font-weight: lighter;font-size: 10pt;">{{user.age}}</span>
-    </ion-item>
-    <ion-item>
-      <ion-label>城市</ion-label>
-      
-      <span style="font-weight: lighter;font-size: 10pt;">{{user.city}}</span>
-    </ion-item>
-    <ion-item (click)="showAppearance()">
-      <ion-label>外貌</ion-label>
-      <span style="font-weight: lighter;font-size: 10pt;"></span>
-    </ion-item>
-    <ion-item>
-      <ion-label>通讯</ion-label>
-     
-      <span style="font-weight: lighter;font-size: 10pt;"> {{user.mobile}}</span>
-    </ion-item>
-    <ion-item lines="none">
-      <ion-label>收入</ion-label>
-      
-      <span style="font-weight: lighter;font-size: 10pt;">{{user.income}}</span>
-    </ion-item>
-  </ion-list>
-</ion-card>
-
-  
-
-
-  <ion-button (click)="onClick()" expand="block"  shape="round" style="--background: #8BA0F1;width: 60%;color: #FFFFFF;margin: 40px auto;height: 40px;line-height: 40px;padding-top: 0px;">
-    提交
-  </ion-button>
-
-<!-- 外貌 -->
-<div *ngIf="isShow">
-  <!--//弹框内容-->
-  <div style="z-index: 11;position: fixed;margin-top: calc(-90%);width: 106%;left: -3%;"
-       ontouchmove="event.preventDefault();event.stopPropagation();">
-      <ion-card >
-      <ion-item>
-        <ion-label>
-          外貌
-      </ion-label>
-        <ion-label style="color: #999999;margin-left: -80%;">
-          最多可选四个
-      </ion-label>
+  </ion-card>
+  <ion-card>
+    <ion-list lines="none">
+      <ion-list-header class="bold fz1">资料</ion-list-header>
+      <ion-item class="top-line" detail>
+        <ion-label>昵称</ion-label>
+        <span class="fz0-8 color-grey" style="font-weight: lighter;">{{user.nickName}}</span>
       </ion-item>
-      <div class="main" style="background-color: #FFFFFF;">
-         <div style="background-color: #8BA0F1;color: #FFFFFF;">
-           <ion-label >温柔可爱  </ion-label>
-          
-         </div>      
-        
+      <ion-item class="top-line">
+        <ion-label>ID</ion-label>
+        <span class="fz0-8 color-grey" style="font-weight: lighter;">{{user.identityId}}</span>
+      </ion-item>
+      <ion-item class="top-line">
+        <ion-label>性别</ion-label>
+        <span class="fz0-8 color-grey" style="font-weight: lighter;" *ngIf="user.sex==1">男</span>
+        <span class="fz0-8 color-grey" style="font-weight: lighter;" *ngIf="user.sex==2">女</span>
+        <span class="fz0-8 color-grey" style="font-weight: lighter;" *ngIf="user.sex==3">其他</span>
+      </ion-item>
+      <ion-item class="top-line" detail>
+        <ion-label>年龄</ion-label>
+        <span class="fz0-8 color-grey" style="font-weight: lighter;">{{user.age}}</span>
+      </ion-item>
+      <ion-item class="top-line" detail>
+        <ion-label>城市</ion-label>
+        <span class="fz0-8 color-grey" style="font-weight: lighter;">{{user.city}}</span>
+      </ion-item>
+      <ion-item class="top-line" (click)="showAppearance()" detail>
+        <ion-label>外貌</ion-label>
+        <span class="fz0-8 color-grey" style="font-weight: lighter;">{{user.appearance}}</span>
+      </ion-item>
+      <ion-item class="top-line" detail>
+        <ion-label>通讯</ion-label>
+        <span class="fz0-8 color-grey" style="font-weight: lighter;"> {{user.mobile}}</span>
+      </ion-item>
+      <ion-item class="top-line" detail>
+        <ion-label>收入</ion-label>
+        <span class="fz0-8 color-grey" style="font-weight: lighter;">{{user.income}}</span>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+
+  <ion-row class="flex-box" style="margin-top: 3rem;">
+    <ion-button (click)="submit()" style="--background: #8CC7FF;width: 33vw;">
+      保存
+    </ion-button>
+  </ion-row>
+
+  <!-- 外貌 -->
+  <div *ngIf="isShow">
+    <!--//弹框内容-->
+    <div style="z-index: 11;position: fixed;margin-top: calc(-90%);width: 106%;left: -3%;"
+      ontouchmove="event.preventDefault();event.stopPropagation();">
+      <ion-card>
+        <ion-item>
+          <ion-label>
+            外貌
+          </ion-label>
+          <ion-label style="color: #999999;margin-left: -80%;">
+            最多可选四个
+          </ion-label>
+        </ion-item>
+        <div class="main" style="background-color: #FFFFFF;">
+          <div style="background-color: #8BA0F1;color: #FFFFFF;">
+            <ion-label>温柔可爱 </ion-label>
+
+          </div>
+
           <div>
             <ion-label>温柔可爱</ion-label>
-           </div>
-         
-         
+          </div>
+
+
           <div style="background-color: #8BA0F1;color: #FFFFFF;">
-            <ion-label >妖娆多姿</ion-label>
-           </div>
-        
-         
+            <ion-label>妖娆多姿</ion-label>
+          </div>
+
+
           <div>
             <ion-label>聪明伶俐</ion-label>
-           </div>
-        
+          </div>
+
           <div style="background-color: #8BA0F1;color: #FFFFFF;">
-            <ion-label >秀外慧中</ion-label>
-           </div>
-         
+            <ion-label>秀外慧中</ion-label>
+          </div>
+
           <div>
             <ion-label>楚楚动人</ion-label>
-           </div>
-        
+          </div>
+
           <div>
             <ion-label>摩登女郎</ion-label>
-           </div>
-        
+          </div>
+
           <div style="background-color: #8BA0F1;color: #FFFFFF;">
-            <ion-label >火爆性感</ion-label>
-           </div>
-           <div>
-            <ion-label>温柔可爱  </ion-label>
-           
-          </div>      
-         
-           <div>
-             <ion-label>温柔可爱</ion-label>
-            </div>
-          
-          
-           <div>
-             <ion-label>妖娆多姿</ion-label>
-            </div>
-         
-          
-           <div>
-             <ion-label>聪明伶俐</ion-label>
-            </div>
-         
-           <div>
-             <ion-label>秀外慧中</ion-label>
-            </div>
-          
-           <div>
-             <ion-label>楚楚动人</ion-label>
-            </div>
-         
-           <div>
-             <ion-label>摩登女郎</ion-label>
-            </div>
-         
-           <div>
-             <ion-label>火爆性感</ion-label>
-            </div>
-            <div>
-              <ion-label>秀外慧中</ion-label>
-             </div>
-           
-            <div>
-              <ion-label>楚楚动人</ion-label>
-             </div>
-          
-            <div>
-              <ion-label>摩登女郎</ion-label>
-             </div>
-          
-            <div>
-              <ion-label>火爆性感</ion-label>
-             </div>
-      </div>
+            <ion-label>火爆性感</ion-label>
+          </div>
+          <div>
+            <ion-label>温柔可爱 </ion-label>
+
+          </div>
+
+          <div>
+            <ion-label>温柔可爱</ion-label>
+          </div>
+
+
+          <div>
+            <ion-label>妖娆多姿</ion-label>
+          </div>
+
+
+          <div>
+            <ion-label>聪明伶俐</ion-label>
+          </div>
+
+          <div>
+            <ion-label>秀外慧中</ion-label>
+          </div>
+
+          <div>
+            <ion-label>楚楚动人</ion-label>
+          </div>
+
+          <div>
+            <ion-label>摩登女郎</ion-label>
+          </div>
+
+          <div>
+            <ion-label>火爆性感</ion-label>
+          </div>
+          <div>
+            <ion-label>秀外慧中</ion-label>
+          </div>
+
+          <div>
+            <ion-label>楚楚动人</ion-label>
+          </div>
+
+          <div>
+            <ion-label>摩登女郎</ion-label>
+          </div>
+
+          <div>
+            <ion-label>火爆性感</ion-label>
+          </div>
+        </div>
       </ion-card>
 
-  </div>
-  <!--遮罩-->
-  <div (click)="backdropclick($event)" ontouchmove="event.preventDefault();event.stopPropagation();" style="height: 110%;">
+    </div>
+    <!--遮罩-->
+    <div (click)="backdropclick($event)" ontouchmove="event.preventDefault();event.stopPropagation();"
+      style="height: 110%;">
       <ion-backdrop role="presentation" tappable
-                    style="opacity: 0.5; transition-delay: initial; transition-property: none;height: 110%;"></ion-backdrop>
+        style="opacity: 0.5; transition-delay: initial; transition-property: none;height: 110%;"></ion-backdrop>
+    </div>
   </div>
-</div>
 </ion-content>

@@ -251,10 +251,9 @@ export class InformationCompletionPage implements OnInit {
         console.log(result);
         let dataInfo = result;
         if (dataInfo.status == 0) {
+          this.signIn();
         } else {
-          this.tool.showToast("修改成功");
-          // //跳转主页
-          // this.router.navigate(['/tabs/tab1']);
+          this.tool.showToast(result.message);
         }
       }).catch(result => {
         this.tool.showToast("提交失败");

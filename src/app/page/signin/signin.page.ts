@@ -1,16 +1,16 @@
-import {Component, OnInit} from '@angular/core';
-import {Storage} from '../../providers/Storage';
-import {AuthService} from '../../services/auth.service';
-import {HttpService} from '../../providers/HttpService';
-import {Helper} from "../../providers/Helper";
-import {Router} from "@angular/router";
-import {NavController} from '@ionic/angular';
-import {UserService} from "../../services/user.service";
-import {GlobalData} from '../../providers/GlobalData';
-import {HttpRequestService} from "../../service/http-request.service";
-import {RequestUrlService} from "../../service/request-url.service";
-import {ToolService} from "../../service/tool.service";
-import {StorageService} from "../../service/storage.service";
+import { Component, OnInit } from '@angular/core';
+import { Storage } from '../../providers/Storage';
+import { AuthService } from '../../services/auth.service';
+import { HttpService } from '../../providers/HttpService';
+import { Helper } from "../../providers/Helper";
+import { Router } from "@angular/router";
+import { NavController, PickerController } from '@ionic/angular';
+import { UserService } from "../../services/user.service";
+import { GlobalData } from '../../providers/GlobalData';
+import { HttpRequestService } from "../../service/http-request.service";
+import { RequestUrlService } from "../../service/request-url.service";
+import { ToolService } from "../../service/tool.service";
+import { StorageService } from "../../service/storage.service";
 
 @Component({
     selector: 'app-signin',
@@ -23,23 +23,70 @@ export class SigninPage implements OnInit {
         username: '',
         password: ''
     };
-
+    phonePrefixList = [
+        [
+            '+86',
+            '+25',
+            '+30'
+        ]
+    ];
+    phonePrefix = '+86';
     constructor(public http: HttpService,
-                public authService: AuthService,
-                public userService: UserService,
-                private httpServer: HttpRequestService,
-                private requestUrl: RequestUrlService,
-                private storageServe: StorageService,
-                private tool: ToolService,
-                public helper: Helper,
-                private router: Router,
-                private nav: NavController,
-                ) {
+        public authService: AuthService,
+        public userService: UserService,
+        private httpServer: HttpRequestService,
+        private requestUrl: RequestUrlService,
+        private tool: ToolService,
+        public helper: Helper,
+        private router: Router,
+        private nav: NavController,
+        private pickercontroller: PickerController
+    ) {
     }
 
     ngOnInit() {
     }
+    async openPicker(numColumns = 1, numOptions = 5, multiColumnOptions) {
+        const picker = await this.pickercontroller.create({
+            columns: this.getColumns(numColumns, numOptions, multiColumnOptions),
+            buttons: [
+                {
+                    text: '取消',
+                    role: 'cancel'
+                },
+                {
+                    text: '确定',
+                    handler: value => {
+                        // console.log(`Got Value ${value}`);
+                        console.log(JSON.stringify(value))
+                        this.phonePrefix = value["col-0"].text;
+                    }
+                }
+            ]
+        });
+        await picker.present();
+    }
+    getColumns(numColumns, numOptions, columnOptions) {
+        let columns = [];
+        for (let i = 0; i < numColumns; i++) {
+            columns.push({
+                name: `col-${i}`,
+                options: this.getColumnOptions(i, numOptions, columnOptions)
+            });
+        }
+        return columns;
+    }
 
+    getColumnOptions(columnIndex, numOptions, columnOptions) {
+        let options = [];
+        for (let i = 0; i < numOptions; i++) {
+            options.push({
+                text: columnOptions[columnIndex][i % numOptions],
+                value: i
+            })
+        }
+        return options;
+    }
     signIn() {
         this.tool.showLoading('登录中');
         this.httpServer.request({
@@ -49,14 +96,14 @@ export class SigninPage implements OnInit {
         }).then(res => {
             this.tool.hideLoading();
             if (res.status === 0) {
-                this.storageServe.write('token', res.data);
+                localStorage.setItem('token', res.data);
                 this.httpServer.request({
                     method: 'get',
                     url: this.requestUrl.userInfoUrl + '/' + this.user.username,
                 }).then(response => {
                     if (response.status === 0) {
                         this.helper.loginSuccessHandle(response.data);
-                        this.router.navigate(['/tabs/tab1']);
+                        this.nav.navigateRoot(['/tabs']);
                     } else {
                         this.tool.showToast(res.message);
                     }
